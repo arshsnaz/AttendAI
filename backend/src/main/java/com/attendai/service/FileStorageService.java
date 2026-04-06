@@ -19,9 +19,11 @@ public class FileStorageService {
     private static final Set<String> ALLOWED_EXTENSIONS = Set.of("jpg", "jpeg", "png", "gif", "webp", "bmp");
 
     private final Path studentImageDir;
+    private final String publicImageBasePath;
 
     public FileStorageService(@Value("${app.upload.student-dir:uploads/students}") String studentImageDir) {
         this.studentImageDir = Paths.get(studentImageDir).toAbsolutePath().normalize();
+        this.publicImageBasePath = "/uploads/students";
     }
 
     public String storeStudentImage(MultipartFile image) {
@@ -41,7 +43,7 @@ public class FileStorageService {
             Files.createDirectories(studentImageDir);
             Path targetPath = studentImageDir.resolve(fileName);
             Files.copy(image.getInputStream(), targetPath, StandardCopyOption.REPLACE_EXISTING);
-            return "/uploads/students/" + fileName;
+            return publicImageBasePath + "/" + fileName;
         } catch (IOException ex) {
             throw new RuntimeException("Failed to store image", ex);
         }

@@ -17,5 +17,9 @@ npm install
 npm run dev
 ```
 
+## Frontend env file
+- Copy `frontend/.env.example` to `frontend/.env`
+- Set `VITE_API_URL` to your API base URL
+
 ## Notes
 The project currently keeps frontend files at repository root for compatibility with existing scripts and deployment setup. This folder is added to provide clear separation by domain without breaking imports or tooling.

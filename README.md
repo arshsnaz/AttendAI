@@ -20,8 +20,14 @@ Additional organization docs:
 - `frontend/README.md`
 - `backend/README.md`
 - `database/README.md`
+- `docs/RAILWAY_BACKEND.md`
+- `docs/RENDER_BACKEND.md`
 
 ## Local Setup
+
+Environment examples:
+- `frontend/.env.example` -> copy to `frontend/.env`
+- `backend/.env.example` -> copy to `backend/.env`
 
 ### 1. Start backend
 ```bash

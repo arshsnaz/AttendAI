@@ -1,10 +1,18 @@
 # Backend Dockerfile for AttendAI
-FROM eclipse-temurin:17-jdk-alpine
+FROM maven:3.9.9-eclipse-temurin-17 AS build
 
 WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn -q -DskipTests package
 
-COPY target/backend-1.0.0.jar app.jar
+FROM eclipse-temurin:17-jre-alpine
 
-EXPOSE 8082
+WORKDIR /app
+COPY --from=build /app/target/backend-1.0.0.jar app.jar
 
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENV PORT=8080
+
+EXPOSE 8080
+
+ENTRYPOINT ["sh", "-c", "java -jar /app/app.jar --server.port=${PORT}"]

@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: attendai-backend
+    env: docker
+    plan: free
+    rootDir: backend
+    dockerfilePath: backend/Dockerfile
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 8080
