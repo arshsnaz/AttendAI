@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 195 34% 95%;
+    --foreground: 206 60% 14%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 206 60% 14%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 206 60% 14%;
+
+    --primary: 189 61% 43%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 193 29% 90%;
+    --secondary-foreground: 206 60% 14%;
+
+    --muted: 194 28% 92%;
+    --muted-foreground: 205 23% 40%;
+
+    --accent: 194 28% 89%;
+    --accent-foreground: 206 60% 14%;
+
+    --destructive: 0 72% 52%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 194 22% 84%;
+    --input: 194 22% 84%;
+    --ring: 189 61% 43%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 195 31% 93%;
+    --sidebar-foreground: 206 60% 14%;
+    --sidebar-primary: 189 61% 43%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 194 28% 89%;
+    --sidebar-accent-foreground: 189 61% 35%;
+    --sidebar-border: 194 22% 84%;
+    --sidebar-ring: 189 61% 43%;
+    
+    --success: 142 72% 29%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --info: 189 61% 43%;
+    --info-foreground: 0 0% 100%;
+
+    --chart-1: 189 61% 43%;
+    --chart-2: 194 49% 61%;
+    --chart-3: 201 48% 34%;
+    --chart-4: 174 39% 63%;
+    --chart-5: 208 50% 24%;
+
+    --shadow-card: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+    --shadow-elevated: 0 10px 15px -3px rgb(0 0 0 / 0.08), 0 4px 6px -4px rgb(0 0 0 / 0.04);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Manrope', 'Segoe UI', Tahoma, sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    background-image: radial-gradient(circle at 50% 0%, #dfeef2 0%, transparent 70%);
+  }
+}
+
+@layer utilities {
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+}
+
+
+@layer utilities {
+  .animate-gradient-x {
+    animation: gradient-x 15s ease infinite;
+    background-size: 200% 200%;
+  }
+
+  @keyframes gradient-x {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .animate-slow-spin {
+    animation: spin 15s linear infinite;
+  }
+
+  .animate-rise {
+    animation: rise-in 0.55s ease-out both;
+  }
+
+  .animate-rise-delay-1 {
+    animation: rise-in 0.55s ease-out 0.08s both;
+  }
+
+  .animate-rise-delay-2 {
+    animation: rise-in 0.55s ease-out 0.16s both;
+  }
+
+  .animate-rise-delay-3 {
+    animation: rise-in 0.55s ease-out 0.24s both;
+  }
+
+  .animate-soft-float {
+    animation: soft-float 5.5s ease-in-out infinite;
+  }
+
+  .animate-pulse-border {
+    animation: pulse-border 2.2s ease-in-out infinite;
+  }
+
+  @keyframes rise-in {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes soft-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+  }
+
+  @keyframes pulse-border {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 rgb(43 159 177 / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 0 8px rgb(43 159 177 / 0);
+    }
+  }
+}
