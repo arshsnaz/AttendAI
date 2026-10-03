@@ -53,15 +53,9 @@ export default function LoginPage() {
               <AttendAiLogo className="w-full h-full object-contain" showGlow />
             </div>
           </div>
-          <div className="flex items-center justify-center gap-2">
-            <h1 className="text-3xl font-display font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#0B2E45] via-[#104868] to-[#2B9FB1]">
-              AttendAi
-            </h1>
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold bg-[#2B9FB1]/15 text-[#1b7f90] border border-[#2B9FB1]/25">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#2B9FB1] animate-pulse"></span>
-              Ai
-            </span>
-          </div>
+          <h1 className="text-3xl font-display font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#0B2E45] via-[#104868] to-[#2B9FB1]">
+            AttendAi
+          </h1>
           <p className="text-muted-foreground mt-1 text-xs uppercase tracking-widest font-bold">
             AI-Powered Attendance Management
           </p>

@@ -52,7 +52,6 @@ const cardReveal = {
 
 const navItems = [
   { id: 'features', label: 'Features' },
-  { id: 'interactive-demo', label: 'Live HUD Demo' },
   { id: 'workflow', label: 'How It Works' },
   { id: 'use-cases', label: 'Solutions' },
   { id: 'calculator', label: 'ROI Calculator' },
@@ -268,15 +267,9 @@ export default function HomePage() {
                 <AttendAiLogo className="h-full w-full object-contain" />
               </div>
             </div>
-            <div className="flex items-center gap-1.5">
-              <span className="bg-gradient-to-r from-[#0B2E45] via-[#104868] to-[#2B9FB1] bg-clip-text font-display text-2xl font-black tracking-tight text-transparent">
-                AttendAi
-              </span>
-              <span className="inline-flex items-center gap-1 rounded-md border border-[#2B9FB1]/20 bg-[#2B9FB1]/15 px-1.5 py-0.5 text-[10px] font-bold text-[#1b7f90]">
-                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#2B9FB1]"></span>
-                Ai
-              </span>
-            </div>
+            <span className="bg-gradient-to-r from-[#0B2E45] via-[#104868] to-[#2B9FB1] bg-clip-text font-display text-2xl font-black tracking-tight text-transparent">
+              AttendAi
+            </span>
           </Link>
 
           {/* Desktop Nav Items */}
@@ -363,16 +356,6 @@ export default function HomePage() {
               animate="show"
               variants={sectionReveal}
             >
-              {/* Pill Badge */}
-              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-[#2B9FB1]/30 bg-white/90 px-3.5 py-1.5 text-xs font-extrabold text-[#1a7786] shadow-xs backdrop-blur-md">
-                <span className="flex h-2 w-2 relative">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#2B9FB1] opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2B9FB1]"></span>
-                </span>
-                <span className="uppercase tracking-wider">Next-Gen Facial Biometrics</span>
-                <span className="rounded-full bg-[#2B9FB1]/15 px-2 py-0.2 text-[10px] text-[#1b7f90]">v2.0</span>
-              </div>
-
               {/* Main Headline */}
               <h1 className="font-display text-4xl font-black leading-[1.12] tracking-tight text-[#0B2E45] sm:text-5xl lg:text-[3.5rem]">
                 Autonomous Face Attendance.{' '}
@@ -386,21 +369,18 @@ export default function HomePage() {
                 Transform attendance workflows with <strong className="text-[#0B2E45] font-semibold">0.4-second neural recognition</strong>. Eliminate paper registers, stop proxy buddy-punching, and export certified institutional audit sheets with one click.
               </p>
 
-              {/* CTA Buttons */}
-              <div className="mt-8 flex flex-col gap-3.5 sm:flex-row sm:items-center">
+              {/* Enhanced Primary CTA */}
+              <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
                 <Link to="/signup" className="w-full sm:w-auto">
-                  <Button className="group h-13 w-full rounded-2xl bg-gradient-to-r from-[#2B9FB1] via-[#1F8E9F] to-[#125A6C] px-8 text-base font-bold text-white shadow-xl shadow-[#2B9FB1]/25 transition-all hover:scale-[1.02] hover:shadow-[#2B9FB1]/40 sm:w-auto">
+                  <Button className="group h-14 w-full rounded-2xl bg-gradient-to-r from-[#2B9FB1] via-[#1F8E9F] to-[#125A6C] px-9 text-base font-bold text-white shadow-xl shadow-[#2B9FB1]/25 transition-all hover:scale-[1.02] hover:shadow-[#2B9FB1]/40 sm:w-auto">
                     Start Free Trial
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    <ArrowRight className="ml-2.5 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </Link>
-                <button
-                  onClick={() => scrollTo('interactive-demo')}
-                  className="flex h-13 w-full items-center justify-center gap-2 rounded-2xl border border-[#c1d8df] bg-white/80 px-6 text-sm font-bold text-[#143B4F] shadow-sm backdrop-blur-md transition-all hover:border-[#2B9FB1] hover:bg-white hover:text-[#2B9FB1] sm:w-auto"
-                >
-                  <Play className="h-4 w-4 fill-current text-[#2B9FB1]" />
-                  Live HUD Demo
-                </button>
+                <div className="flex items-center gap-2 text-xs font-semibold text-[#406173]">
+                  <span className="h-2 w-2 rounded-full bg-emerald-500"></span>
+                  <span>Instant 3-minute setup • No credit card required</span>
+                </div>
               </div>
 
               {/* Trust Features Checklist */}

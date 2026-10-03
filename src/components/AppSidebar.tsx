@@ -69,15 +69,9 @@ export function AppSidebar() {
 
           {!collapsed && (
             <div className="min-w-0 flex-1">
-              <div className="flex items-center gap-1.5">
-                <h1 className="font-display font-extrabold text-[1.35rem] tracking-tight leading-none bg-clip-text text-transparent bg-gradient-to-r from-[#0B2E45] via-[#104868] to-[#2B9FB1]">
-                  AttendAi
-                </h1>
-                <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md text-[10px] font-bold bg-[#2B9FB1]/15 text-[#1b7f90] border border-[#2B9FB1]/20">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#2B9FB1] animate-pulse"></span>
-                  Ai
-                </span>
-              </div>
+              <h1 className="font-display font-extrabold text-[1.4rem] tracking-tight leading-none bg-clip-text text-transparent bg-gradient-to-r from-[#0B2E45] via-[#104868] to-[#2B9FB1]">
+                AttendAi
+              </h1>
               <p className="text-[11px] text-[#4b6d80] font-medium mt-1 truncate">Smart Face Attendance</p>
             </div>
           )}
