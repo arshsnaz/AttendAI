@@ -253,8 +253,8 @@ export const getSubjects = async (): Promise<SubjectRecord[]> => {
 // ----------------------------------------------------
 
 export const getAttendanceLogs = async (dateFilter?: string): Promise<AttendanceLog[]> => {
-  const targetDate = dateFilter || new Date().toISOString().split('T')[0];
-  const localLogs = getLocalLogs().filter(l => !dateFilter || l.date === targetDate);
+  const localLogs = getLocalLogs();
+  const filteredLocal = dateFilter ? localLogs.filter(l => l.date === dateFilter) : localLogs;
 
   if (isSupabaseConfigured()) {
     try {
@@ -281,7 +281,7 @@ export const getAttendanceLogs = async (dateFilter?: string): Promise<Attendance
         .order('created_at', { ascending: false });
 
       if (dateFilter) {
-        query = query.eq('date', targetDate);
+        query = query.eq('date', dateFilter);
       }
 
       const { data, error } = await withTimeout(query as any, 1200);
@@ -301,12 +301,12 @@ export const getAttendanceLogs = async (dateFilter?: string): Promise<Attendance
           verificationMethod: row.verification_method || 'AI Biometric Scan',
         }));
         saveLocalLogs([...mapped, ...localLogs.filter(l => !mapped.some(m => m.id === l.id))]);
-        return mapped;
+        return dateFilter ? mapped : [...mapped, ...localLogs.filter(l => !mapped.some(m => m.id === l.id))];
       }
     } catch (e) {}
   }
 
-  return localLogs;
+  return filteredLocal;
 };
 
 export const markAttendanceLog = async (log: {

@@ -18,26 +18,18 @@ import {
   Sparkles,
   Filter,
   ShieldCheck,
-  BookOpen
+  BookOpen,
+  RefreshCw
 } from "lucide-react";
-import { fetchApi } from "@/lib/api";
+import {
+  getAttendanceLogs,
+  getSubjects,
+  type AttendanceLog,
+  type SubjectRecord,
+  type StudentRecord,
+  getStudents
+} from "@/services/attendanceService";
 import { toast } from "sonner";
-
-type SubjectItem = {
-  id: string | number;
-  subjectName: string;
-};
-
-type AttendanceApiItem = {
-  id: string | number;
-  student?: { name?: string; studentId?: string; department?: string };
-  subject?: { subjectName?: string };
-  date: string;
-  time: string;
-  status: string;
-  confidenceScore?: number;
-  verificationMethod?: string;
-};
 
 type AttendanceRecordView = {
   id: string | number;
@@ -58,61 +50,59 @@ const RecordsPage = () => {
   const [subjectFilter, setSubjectFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
   const [records, setRecords] = useState<AttendanceRecordView[]>([]);
-  const [subjects, setSubjects] = useState<SubjectItem[]>([]);
+  const [subjects, setSubjects] = useState<SubjectRecord[]>([]);
   const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    const loadSubjects = async () => {
-      try {
-        const res = await fetchApi("/subjects");
-        if (res.success) setSubjects(res.data);
-      } catch (e) {
-        console.error(e);
-      }
-    };
-    loadSubjects();
-  }, []);
-
-  const loadRecords = async () => {
+  const loadData = async () => {
     try {
       setLoading(true);
-      const res = await fetchApi("/attendance");
-      if (res.success && Array.isArray(res.data)) {
-        const mapped = (res.data as AttendanceApiItem[]).map((r, idx) => ({
-          id: r.id || `rec-${idx}`,
-          studentName: r.student?.name || "Anonymous Student",
-          studentId: r.student?.studentId || `STU-${1000 + idx}`,
-          department: r.student?.department || "Computer Science",
-          subject: r.subject?.subjectName || "Data Structures & AI",
-          date: r.date || new Date().toISOString().split("T")[0],
-          time: r.time || "09:15 AM",
-          status: (r.status?.toLowerCase() || "present") as "present" | "late" | "absent",
-          confidence: r.confidenceScore || (96 + Math.random() * 3.8),
-          method: r.verificationMethod || "AI Biometric Scan"
-        }));
-        setRecords(mapped);
-      }
+      const [logs, subList] = await Promise.all([
+        getAttendanceLogs(), // fetch all logs from local cache, Supabase & backend
+        getSubjects(),
+      ]);
+
+      setSubjects(subList);
+
+      const mapped: AttendanceRecordView[] = logs.map((l, idx) => ({
+        id: l.id || `rec-${idx}`,
+        studentName: l.studentName || "Enrolled Student",
+        studentId: l.studentEnrollmentId || l.studentId || `STU-${1000 + idx}`,
+        department: l.department || "Computer Science",
+        subject: l.subjectName || "Data Structures",
+        date: l.date || new Date().toISOString().split("T")[0],
+        time: l.time || "09:00 AM",
+        status: (l.status?.toLowerCase() || "present") as "present" | "late" | "absent",
+        confidence: l.confidenceScore || 98.4,
+        method: l.verificationMethod || "AI Biometric Scan"
+      }));
+
+      setRecords(mapped);
     } catch (e) {
-      console.error(e);
+      console.error("Failed to load records:", e);
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    loadRecords();
+    loadData();
   }, []);
 
   const filtered = useMemo(() => {
     return records.filter(a => {
       const matchSearch =
+        search.trim() === "" ||
         a.studentName.toLowerCase().includes(search.toLowerCase()) ||
-        a.studentId.toLowerCase().includes(search.toLowerCase());
+        a.studentId.toLowerCase().includes(search.toLowerCase()) ||
+        a.department.toLowerCase().includes(search.toLowerCase());
       const matchDate = !dateFilter || a.date === dateFilter;
       const matchSubject =
         subjectFilter === "all" ||
-        a.subject === subjects.find(s => s.id.toString() === subjectFilter)?.subjectName;
-      const matchStatus = statusFilter === "all" || a.status === statusFilter;
+        a.subject.toLowerCase() === subjectFilter.toLowerCase() ||
+        subjects.find(s => s.id.toString() === subjectFilter)?.subjectName.toLowerCase() === a.subject.toLowerCase();
+      const matchStatus =
+        statusFilter === "all" ||
+        a.status.toLowerCase() === statusFilter.toLowerCase();
       return matchSearch && matchDate && matchSubject && matchStatus;
     });
   }, [records, search, dateFilter, subjectFilter, statusFilter, subjects]);
@@ -123,6 +113,10 @@ const RecordsPage = () => {
   const lateCount = filtered.filter(r => r.status === "late").length;
   const absentCount = filtered.filter(r => r.status === "absent").length;
   const presentRate = totalCount > 0 ? Math.round((presentCount / totalCount) * 100) : 100;
+  const avgConfidence =
+    filtered.length > 0
+      ? (filtered.reduce((acc, r) => acc + (r.confidence || 98), 0) / filtered.length).toFixed(1)
+      : "98.4";
 
   const exportCSV = () => {
     if (filtered.length === 0) {
@@ -248,7 +242,7 @@ const RecordsPage = () => {
             </div>
             <div>
               <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">AI Avg Match</p>
-              <h3 className="text-2xl font-bold text-[#0D2237] mt-0.5">98.4%</h3>
+              <h3 className="text-2xl font-bold text-[#0D2237] mt-0.5">{avgConfidence}%</h3>
               <p className="text-[11px] text-indigo-600 font-medium mt-0.5">Biometric Confidence</p>
             </div>
           </CardContent>
@@ -419,7 +413,26 @@ const RecordsPage = () => {
                         <ClipboardList className="w-6 h-6 opacity-60" />
                       </div>
                       <p className="font-semibold text-slate-700">No attendance records match your filter</p>
-                      <p className="text-xs text-slate-400 mt-1">Try clearing date or subject filters above.</p>
+                      <p className="text-xs text-slate-400 mt-1">
+                        {records.length > 0
+                          ? `There are ${records.length} attendance record(s) on other dates or subjects.`
+                          : "No biometric attendance logs have been recorded yet."}
+                      </p>
+                      {(dateFilter || subjectFilter !== "all" || statusFilter !== "all" || search) && (
+                        <Button
+                          variant="outline"
+                          size="sm"
+                          onClick={() => {
+                            setDateFilter("");
+                            setSubjectFilter("all");
+                            setStatusFilter("all");
+                            setSearch("");
+                          }}
+                          className="mt-3 text-xs rounded-xl border-[#2B9FB1] text-[#2B9FB1] hover:bg-cyan-50"
+                        >
+                          Clear Filters & View All Records ({records.length})
+                        </Button>
+                      )}
                     </TableCell>
                   </TableRow>
                 )}
