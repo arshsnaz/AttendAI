@@ -155,12 +155,10 @@ export default function LoginPage() {
                 {loading ? "Verifying Credentials..." : "Sign In to Dashboard"}
               </Button>
 
-              <div className="pt-2 text-center">
-                <p className="text-xs text-muted-foreground font-medium">
-                  Don't have an account?{" "}
-                  <Link to="/signup" className="text-[#2B9FB1] hover:underline font-bold">
-                    Create institutional account
-                  </Link>
+              <div className="pt-3 text-center border-t border-[#d2e1e5]/60 mt-4">
+                <p className="text-[11px] text-muted-foreground font-medium flex items-center justify-center gap-1.5">
+                  <ShieldCheck className="w-3.5 h-3.5 text-[#2B9FB1]" />
+                  <span>Institutional Workspace • Accounts Provisioned by Administration</span>
                 </p>
               </div>
             </form>

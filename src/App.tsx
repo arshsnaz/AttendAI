@@ -14,7 +14,6 @@ import FaceRegistrationPage from "@/pages/FaceRegistrationPage";
 import ReportsPage from "@/pages/ReportsPage";
 import NotFound from "@/pages/NotFound";
 import HomePage from "@/pages/HomePage";
-import SignupPage from "@/pages/SignupPage";
 import ArticlePage from "@/pages/ArticlePage";
 import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
 import TermsOfServicePage from "@/pages/TermsOfServicePage";
@@ -31,7 +30,7 @@ const App = () => (
         <HashRouter>
           <Routes>
             <Route path="/login" element={<LoginPage />} />
-            <Route path="/signup" element={<SignupPage />} />
+            <Route path="/signup" element={<Navigate to="/login" replace />} />
             <Route path="/" element={<HomePage />} />
             <Route path="/privacy" element={<PrivacyPolicyPage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />

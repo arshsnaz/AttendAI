@@ -46,9 +46,9 @@ export default function SecurityWhitepaperPage() {
                 Sign In
               </Button>
             </Link>
-            <Link to="/signup">
+            <Link to="/login">
               <Button className="rounded-xl bg-[#2B9FB1] hover:bg-[#23899B] text-white text-xs h-9 px-3.5 font-semibold shadow-xs">
-                Get Started
+                Launch Workspace
               </Button>
             </Link>
           </div>

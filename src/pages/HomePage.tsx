@@ -251,8 +251,8 @@ export default function HomePage() {
           </span>
           <span className="hidden sm:inline">AttendAi 2.0 Released:</span>
           <span>Multi-angle 3D Biometrics with Instant Cloud Sync is live!</span>
-          <Link to="/signup" className="ml-2 inline-flex items-center underline hover:text-cyan-200">
-            Try Free <ArrowRight className="ml-1 h-3 w-3" />
+          <Link to="/login" className="ml-2 inline-flex items-center underline hover:text-cyan-200">
+            Launch Workspace <ArrowRight className="ml-1 h-3 w-3" />
           </Link>
         </div>
       </div>
@@ -295,7 +295,7 @@ export default function HomePage() {
                 Sign In
               </Button>
             </Link>
-            <Link to="/signup">
+            <Link to="/login">
               <Button className="group h-10 rounded-full bg-gradient-to-r from-[#2B9FB1] to-[#1E7D8C] px-5 text-xs font-bold text-white shadow-md shadow-[#2B9FB1]/20 transition-all duration-200 hover:shadow-lg hover:shadow-[#2B9FB1]/30 hover:scale-105">
                 Launch Workspace
                 <ArrowRight className="ml-1.5 h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
@@ -334,9 +334,9 @@ export default function HomePage() {
                     Sign In
                   </Button>
                 </Link>
-                <Link to="/signup" className="w-full">
+                <Link to="/login" className="w-full">
                   <Button className="w-full rounded-xl bg-[#2B9FB1] text-xs font-bold text-white">
-                    Get Started
+                    Workspace
                   </Button>
                 </Link>
               </div>
@@ -371,9 +371,9 @@ export default function HomePage() {
 
               {/* Enhanced Primary CTA */}
               <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
-                <Link to="/signup" className="w-full sm:w-auto">
+                <Link to="/login" className="w-full sm:w-auto">
                   <Button className="group h-14 w-full rounded-2xl bg-gradient-to-r from-[#2B9FB1] via-[#1F8E9F] to-[#125A6C] px-9 text-base font-bold text-white shadow-xl shadow-[#2B9FB1]/25 transition-all hover:scale-[1.02] hover:shadow-[#2B9FB1]/40 sm:w-auto">
-                    Start Free Trial
+                    Sign In to Workspace
                     <ArrowRight className="ml-2.5 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </Link>
@@ -814,9 +814,9 @@ export default function HomePage() {
                         <span className="text-xs font-normal text-white/80">/ mo</span>
                       </p>
                     </div>
-                    <Link to="/signup" className="w-full sm:w-auto">
+                    <Link to="/login" className="w-full sm:w-auto">
                       <Button className="w-full sm:w-auto rounded-xl bg-white text-[#0B2E45] hover:bg-slate-100 text-xs font-bold shadow-md h-10 px-4">
-                        Claim Savings
+                        Launch Workspace
                       </Button>
                     </Link>
                   </div>
@@ -889,9 +889,9 @@ export default function HomePage() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-3 sm:items-center flex-shrink-0">
-                <Link to="/signup" className="w-full sm:w-auto">
+                <Link to="/login" className="w-full sm:w-auto">
                   <Button className="h-13 w-full rounded-2xl bg-[#2B9FB1] px-8 text-sm font-bold text-white shadow-lg hover:bg-[#23899B] transition-all hover:scale-105 sm:w-auto">
-                    Get Started Free
+                    Launch Workspace
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </Link>
