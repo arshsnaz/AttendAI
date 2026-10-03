@@ -33,8 +33,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Badge } from "@/components/ui/badge";
-import { isSupabaseConfigured } from "@/lib/supabase";
-import { SupabaseConnectModal } from "@/components/SupabaseConnectModal";
 
 const NOTIFICATIONS = [
   {
@@ -70,7 +68,6 @@ const DashboardLayout = () => {
   const { user, isAuthenticated, logout } = useAuth();
   const location = useLocation();
   const [notifications, setNotifications] = useState(NOTIFICATIONS);
-  const [supabaseModalOpen, setSupabaseModalOpen] = useState(false);
 
   if (!isAuthenticated) return <Navigate to="/login" replace />;
 
@@ -111,28 +108,10 @@ const DashboardLayout = () => {
             </div>
 
             <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
-              {/* Supabase Database Connection Button */}
-              <button
-                onClick={() => setSupabaseModalOpen(true)}
-                className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full text-[11px] sm:text-xs font-semibold transition-all border shadow-sm ${
-                  isSupabaseConfigured()
-                    ? "bg-emerald-50 text-emerald-700 border-emerald-300 hover:bg-emerald-100"
-                    : "bg-amber-50 text-amber-800 border-amber-300 hover:bg-amber-100"
-                }`}
-              >
-                <Database className="w-3.5 h-3.5 flex-shrink-0" />
-                <span className="hidden sm:inline">
-                  {isSupabaseConfigured() ? "Supabase Live" : "Connect Supabase"}
-                </span>
-                <span className="sm:hidden">
-                  {isSupabaseConfigured() ? "Live" : "DB"}
-                </span>
-              </button>
-
-              {/* Live Backend Indicator */}
-              <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-800 text-xs font-medium">
-                <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
-                <span>API Ready</span>
+              {/* Live Status Indicator */}
+              <div className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-800 text-[11px] sm:text-xs font-medium">
+                <span className="w-2 h-2 rounded-full bg-[#2B9FB1] animate-pulse" />
+                <span>Live System Active</span>
               </div>
 
               {/* Notifications Popover */}
@@ -240,7 +219,6 @@ const DashboardLayout = () => {
           </main>
         </div>
       </div>
-      <SupabaseConnectModal open={supabaseModalOpen} onOpenChange={setSupabaseModalOpen} />
     </SidebarProvider>
   );
 };

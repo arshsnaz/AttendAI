@@ -1,3 +1,15 @@
+# Environment variables & secret credential protection
+.env
+.env.*
+!.env.example
+*.env
+*.pem
+*.key
+*.cert
+*.pfx
+*.keystore
+*.credentials
+
 # Logs
 logs
 *.log
@@ -7,6 +19,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies & Build artifacts
 node_modules
 dist
 dist-ssr
@@ -23,6 +36,11 @@ dist-ssr
 *.sln
 *.sw?
 
-# Backend build and runtime output
+# Backend build, storage and runtime output
 backend/target/
 backend/uploads/
+backend/*.log
+backend/.env
+backend/.env.*
+!.backend/.env.example
+*.class

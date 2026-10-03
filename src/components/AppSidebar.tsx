@@ -50,27 +50,27 @@ export function AppSidebar() {
 
   return (
     <Sidebar collapsible="icon" className="border-r border-[#d2e1e5] bg-[#EEF3F4]">
-      <SidebarHeader className="p-3">
+      <SidebarHeader className={collapsed ? "p-1.5 flex items-center justify-center" : "p-3"}>
         <NavLink
           to="/"
           onClick={() => isMobile && setOpenMobile(false)}
-          className={`w-full rounded-2xl border border-[#d2e1e5] bg-gradient-to-br from-white via-[#fcfefe] to-[#f0f7f9] shadow-sm hover:border-[#2B9FB1]/50 hover:shadow-md hover:shadow-[#2B9FB1]/10 transition-all duration-300 group ${
-            collapsed ? "flex justify-center p-2" : "flex items-center gap-3 p-2.5"
+          className={`rounded-2xl border border-[#d2e1e5] bg-gradient-to-br from-white via-[#fcfefe] to-[#f0f7f9] shadow-sm hover:border-[#2B9FB1]/50 hover:shadow-md hover:shadow-[#2B9FB1]/10 transition-all duration-300 group ${
+            collapsed ? "w-9 h-9 flex items-center justify-center p-0" : "w-full flex items-center gap-3 p-2.5"
           }`}
         >
           <div
-            className={`rounded-xl bg-gradient-to-br from-[#0B2E45] via-[#103D5B] to-[#2B9FB1] p-[1.5px] shadow-md group-hover:shadow-[#2B9FB1]/30 transition-all duration-300 flex-shrink-0 ${
-              collapsed ? "h-11 w-11" : "h-12 w-12"
+            className={`rounded-xl bg-gradient-to-br from-[#0B2E45] via-[#103D5B] to-[#2B9FB1] p-[1.5px] shadow-sm group-hover:shadow-[#2B9FB1]/30 transition-all duration-300 flex-shrink-0 flex items-center justify-center ${
+              collapsed ? "h-7 w-7" : "h-11 w-11"
             }`}
           >
-            <div className="w-full h-full rounded-[10px] bg-white flex items-center justify-center p-1.5 transition-transform duration-300 group-hover:scale-[1.02]">
+            <div className="w-full h-full rounded-[9px] bg-white flex items-center justify-center p-1 transition-transform duration-300 group-hover:scale-[1.02]">
               <AttendAiLogo className="w-full h-full object-contain" showGlow={false} />
             </div>
           </div>
 
           {!collapsed && (
             <div className="min-w-0 flex-1">
-              <h1 className="font-display font-extrabold text-[1.4rem] tracking-tight leading-none bg-clip-text text-transparent bg-gradient-to-r from-[#0B2E45] via-[#104868] to-[#2B9FB1]">
+              <h1 className="font-display font-extrabold text-[1.35rem] tracking-tight leading-none bg-clip-text text-transparent bg-gradient-to-r from-[#0B2E45] via-[#104868] to-[#2B9FB1]">
                 AttendAi
               </h1>
               <p className="text-[11px] text-[#4b6d80] font-medium mt-1 truncate">Smart Face Attendance</p>
@@ -107,7 +107,7 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
 
-      <SidebarFooter className="p-3 border-t border-[#d2e1e5]/60">
+      <SidebarFooter className={collapsed ? "p-2 flex items-center justify-center" : "p-3 border-t border-[#d2e1e5]/60"}>
         {!collapsed ? (
           <div className="rounded-xl bg-white/70 border border-[#d2e1e5] p-2.5 flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -117,13 +117,10 @@ export function AppSidebar() {
               </span>
               <span className="text-xs font-semibold text-[#0B2E45]">System Active</span>
             </div>
-            <span className="text-[10px] font-mono font-medium text-muted-foreground bg-muted px-1.5 py-0.5 rounded">
-              v1.2 AI
-            </span>
           </div>
         ) : (
-          <div className="flex justify-center">
-            <span className="relative flex h-2.5 w-2.5">
+          <div className="flex justify-center p-1">
+            <span className="relative flex h-2.5 w-2.5" title="System Active">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
             </span>

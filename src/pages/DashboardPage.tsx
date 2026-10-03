@@ -40,8 +40,6 @@ import {
   type DashboardMetrics,
   type AttendanceLog
 } from "@/services/attendanceService";
-import { isSupabaseConfigured } from "@/lib/supabase";
-import { SupabaseConnectModal } from "@/components/SupabaseConnectModal";
 
 const COLORS = ["#2B9FB1", "#0B2E45", "#5BC2D0", "#8ECFDB", "#13633A", "#F59E0B"];
 
@@ -96,7 +94,6 @@ const DashboardPage = () => {
   // 0ms instant initialization from cache
   const [metrics, setMetrics] = useState<DashboardMetrics>(() => computeInstantMetrics());
   const [recentLogs, setRecentLogs] = useState<AttendanceLog[]>(() => getLocalLogs().slice(0, 5));
-  const [supabaseModalOpen, setSupabaseModalOpen] = useState(false);
 
   const loadData = async () => {
     try {
@@ -124,21 +121,8 @@ const DashboardPage = () => {
       {/* Welcome Hero Banner */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 p-6 rounded-2xl bg-white/90 border border-[#d2e1e5] shadow-sm">
         <div>
-          <div className="flex flex-wrap items-center gap-2 mb-2">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-50 text-[#2B9FB1] text-xs font-semibold border border-cyan-200">
-              <Sparkles className="w-3.5 h-3.5" /> AI Attendance Intelligence
-            </span>
-            <button
-              onClick={() => setSupabaseModalOpen(true)}
-              className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold transition-all border ${
-                isSupabaseConfigured()
-                  ? "bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100"
-                  : "bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100"
-              }`}
-            >
-              <Database className="w-3.5 h-3.5" />
-              <span>{isSupabaseConfigured() ? "Supabase Connected" : "Connect Supabase DB"}</span>
-            </button>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-50 text-[#2B9FB1] text-xs font-semibold mb-2 border border-cyan-200">
+            <Sparkles className="w-3.5 h-3.5" /> AI Attendance Intelligence
           </div>
           <h1 className="text-2xl sm:text-3xl font-bold font-display text-[#0D2237]">
             Welcome back, {user?.name || "Administrator"} 👋
@@ -400,8 +384,6 @@ const DashboardPage = () => {
           )}
         </CardContent>
       </Card>
-
-      <SupabaseConnectModal open={supabaseModalOpen} onOpenChange={setSupabaseModalOpen} />
     </div>
   );
 };
