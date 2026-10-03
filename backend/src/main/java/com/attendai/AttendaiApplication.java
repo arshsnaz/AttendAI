@@ -18,13 +18,23 @@ public class AttendaiApplication {
     @Bean
     public CommandLineRunner initUser(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         return args -> {
-            User user = userRepository.findByEmail("admin@attendai.com").orElse(new User());
-            user.setEmail("admin@attendai.com");
-            user.setName("System Admin");
-            user.setPassword(passwordEncoder.encode("admin123"));
-            user.setRole("ADMIN");
-            userRepository.save(user);
-            System.out.println("===> ADMIN SEEDED SUCCESSFULLY <===");
+            // Seed Admin User
+            User admin = userRepository.findByEmail("admin@attendai.com").orElse(new User());
+            admin.setEmail("admin@attendai.com");
+            admin.setName("System Admin");
+            admin.setPassword(passwordEncoder.encode("admin123"));
+            admin.setRole("ADMIN");
+            userRepository.save(admin);
+
+            // Seed Faculty User
+            User faculty = userRepository.findByEmail("faculty@attendai.com").orElse(new User());
+            faculty.setEmail("faculty@attendai.com");
+            faculty.setName("Prof. Sarah Jenkins");
+            faculty.setPassword(passwordEncoder.encode("admin123"));
+            faculty.setRole("FACULTY");
+            userRepository.save(faculty);
+
+            System.out.println("===> ADMIN & FACULTY SEEDED SUCCESSFULLY <===");
         };
     }
 }
