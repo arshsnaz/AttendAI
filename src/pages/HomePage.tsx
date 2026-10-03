@@ -617,35 +617,33 @@ export default function HomePage() {
 
         {/* ================= STEP BY STEP WORKFLOW ================= */}
         <section id="workflow" className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <div className="rounded-3xl bg-gradient-to-br from-[#0B2E45] via-[#0F3954] to-[#164F6D] p-8 sm:p-12 text-white shadow-xl relative overflow-hidden">
-            <div className="absolute -right-20 -bottom-20 w-80 h-80 bg-[#2B9FB1]/20 rounded-full blur-3xl pointer-events-none" />
-
-            <div className="relative z-10 max-w-2xl mb-12">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-cyan-300 text-xs font-bold mb-3 border border-white/15">
+          <div className="rounded-3xl border border-[#d2e1e5] bg-white p-8 sm:p-12 shadow-sm relative overflow-hidden">
+            <div className="max-w-2xl mb-12">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#2B9FB1]/10 text-[#1a7786] text-xs font-bold mb-3 border border-[#2B9FB1]/20">
                 <Activity className="w-3.5 h-3.5" /> 3-Minute Rapid Deployment
               </span>
-              <h2 className="font-display text-3xl sm:text-4xl font-black tracking-tight text-white">
+              <h2 className="font-display text-3xl sm:text-4xl font-black tracking-tight text-[#0B2E45]">
                 How AttendAi Works in 3 Simple Steps
               </h2>
-              <p className="text-cyan-100/80 text-sm sm:text-base mt-2">
+              <p className="text-[#4c6e80] text-sm sm:text-base mt-2">
                 Get your department or entire institution operational with zero IT friction.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {steps.map((step) => (
                 <div
                   key={step.number}
-                  className="rounded-2xl border border-white/15 bg-white/5 p-6 backdrop-blur-md transition-all hover:bg-white/10"
+                  className="rounded-2xl border border-[#dce8ec] bg-[#F4F8FA] p-6 hover:border-[#2B9FB1]/50 hover:bg-white hover:shadow-md transition-all duration-300"
                 >
                   <div className="flex items-center justify-between mb-4">
-                    <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-cyan-400 to-[#2B9FB1] flex items-center justify-center text-[#0B2E45] font-bold">
+                    <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-[#0B2E45] to-[#2B9FB1] flex items-center justify-center text-white font-bold shadow-sm">
                       <step.icon className="h-5 w-5" />
                     </div>
-                    <span className="font-display text-3xl font-black text-cyan-300/40">{step.number}</span>
+                    <span className="font-display text-3xl font-black text-[#2B9FB1]/40">{step.number}</span>
                   </div>
-                  <h3 className="font-display text-lg font-bold text-white">{step.title}</h3>
-                  <p className="text-sm text-cyan-100/75 mt-2 leading-relaxed">{step.desc}</p>
+                  <h3 className="font-display text-lg font-bold text-[#0B2E45]">{step.title}</h3>
+                  <p className="text-sm text-[#4c6e80] mt-2 leading-relaxed">{step.desc}</p>
                 </div>
               ))}
             </div>
@@ -848,12 +846,10 @@ export default function HomePage() {
 
         {/* ================= HIGH IMPACT CALL TO ACTION ================= */}
         <section className="mx-auto w-full max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
-          <div className="rounded-3xl bg-gradient-to-r from-[#0B2E45] via-[#103D5B] to-[#1E6B80] p-8 sm:p-14 text-white shadow-2xl relative overflow-hidden text-center sm:text-left">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-[#2B9FB1]/20 rounded-full blur-3xl pointer-events-none" />
-
+          <div className="rounded-3xl bg-gradient-to-r from-[#0B2E45] via-[#0D3852] to-[#134D6B] border border-[#1b4b68] p-8 sm:p-14 text-white shadow-xl relative overflow-hidden text-center sm:text-left">
             <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-8">
               <div className="max-w-2xl">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-400/20 text-cyan-300 text-xs font-bold mb-3 border border-cyan-400/30">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-400/15 text-cyan-300 text-xs font-bold mb-3 border border-cyan-400/30">
                   <Flame className="w-3.5 h-3.5" /> Instant Onboarding
                 </span>
                 <h3 className="font-display text-3xl sm:text-5xl font-black text-white leading-tight">
@@ -866,7 +862,7 @@ export default function HomePage() {
 
               <div className="flex flex-col sm:flex-row gap-3 sm:items-center flex-shrink-0">
                 <Link to="/signup" className="w-full sm:w-auto">
-                  <Button className="h-13 w-full rounded-2xl bg-gradient-to-r from-[#2B9FB1] to-[#1FB1C7] px-8 text-sm font-bold text-white shadow-xl hover:bg-[#23899B] transition-all hover:scale-105 sm:w-auto">
+                  <Button className="h-13 w-full rounded-2xl bg-[#2B9FB1] px-8 text-sm font-bold text-white shadow-lg hover:bg-[#23899B] transition-all hover:scale-105 sm:w-auto">
                     Get Started Free
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
@@ -874,7 +870,7 @@ export default function HomePage() {
                 <Link to="/login" className="w-full sm:w-auto">
                   <Button
                     variant="outline"
-                    className="h-13 w-full rounded-2xl border-white/30 bg-white/10 text-white hover:bg-white/20 text-sm font-bold sm:w-auto backdrop-blur-md"
+                    className="h-13 w-full rounded-2xl border-white/25 bg-white/10 text-white hover:bg-white/20 text-sm font-bold sm:w-auto"
                   >
                     Faculty Login
                   </Button>
