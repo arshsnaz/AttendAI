@@ -170,29 +170,30 @@ const RecordsPage = () => {
   return (
     <div className="space-y-8 animate-rise">
       {/* Header Banner */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 rounded-2xl bg-gradient-to-r from-[#0B2E45] to-[#124968] text-white shadow-lg relative overflow-hidden">
-        <div className="absolute -right-10 -bottom-10 w-48 h-48 bg-[#2B9FB1]/20 rounded-full blur-3xl pointer-events-none" />
-        <div className="relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-cyan-300 text-xs font-semibold mb-2 backdrop-blur-sm border border-white/10">
-            <ClipboardList className="w-3.5 h-3.5" />
-            <span>Audit & Verification Logs</span>
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 rounded-2xl bg-white/90 border border-[#d2e1e5] shadow-sm">
+        <div>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-50 text-[#2B9FB1] text-xs font-semibold mb-2 border border-cyan-200">
+            <ClipboardList className="w-3.5 h-3.5" /> Audit & Verification Logs
           </div>
-          <h1 className="text-2xl sm:text-3xl font-bold font-display tracking-tight">Attendance Records</h1>
-          <p className="text-cyan-100/80 text-sm mt-1 max-w-xl">
+          <h1 className="text-2xl sm:text-3xl font-bold font-display text-[#0D2237]">
+            Attendance Records
+          </h1>
+          <p className="text-xs text-muted-foreground mt-0.5">
             Audit authenticated attendance logs with AI biometric confidence scores and export official compliance sheets.
           </p>
         </div>
-        <div className="relative z-10 flex flex-wrap items-center gap-2.5 print:hidden">
+
+        <div className="flex flex-wrap items-center gap-2.5 print:hidden">
           <Button
             onClick={exportCSV}
             variant="outline"
-            className="border-white/30 text-white hover:bg-white/10 rounded-xl text-xs gap-1.5"
+            className="rounded-xl border-[#d2e1e5] text-xs h-10 px-4 gap-1.5 hover:bg-slate-50"
           >
-            <FileSpreadsheet className="w-4 h-4 text-emerald-400" /> Export CSV
+            <FileSpreadsheet className="w-4 h-4 text-emerald-600" /> Export CSV
           </Button>
           <Button
             onClick={exportPDF}
-            className="bg-[#2B9FB1] hover:bg-[#23899B] text-white rounded-xl text-xs gap-1.5 shadow-md"
+            className="bg-[#2B9FB1] hover:bg-[#23899B] text-white rounded-xl text-xs h-10 px-4 gap-1.5 shadow-md"
           >
             <Printer className="w-4 h-4" /> Print / PDF
           </Button>
