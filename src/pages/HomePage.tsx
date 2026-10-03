@@ -426,34 +426,65 @@ export default function HomePage() {
                 </div>
 
                 {/* Simulated Camera Viewfinder with Biometric Overlays */}
-                <div className="relative overflow-hidden rounded-2xl bg-[#072438] aspect-[16/10] flex items-center justify-center p-4 border border-[#16425e]">
-                  {/* Subtle Grid Lines */}
+                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-[#061b29] via-[#092538] to-[#041420] aspect-[16/11] sm:aspect-[16/10] flex flex-col items-center justify-between p-3 sm:p-4 border border-cyan-500/30 shadow-2xl shadow-[#0B2E45]/40">
+                  {/* Subtle Grid & Radial Scan Lines */}
                   <div
-                    className="absolute inset-0 opacity-15"
+                    className="absolute inset-0 opacity-20 pointer-events-none"
                     style={{
                       backgroundImage: 'radial-gradient(#2B9FB1 1px, transparent 1px)',
-                      backgroundSize: '20px 20px',
+                      backgroundSize: '18px 18px',
                     }}
                   />
+                  <div className="absolute inset-0 bg-radial from-transparent via-transparent to-[#030e17]/80 pointer-events-none" />
 
-                  {/* Dynamic Corner Target Brackets */}
-                  <div className="absolute top-4 left-4 w-6 h-6 border-t-2 border-l-2 border-cyan-400 rounded-tl-sm" />
-                  <div className="absolute top-4 right-4 w-6 h-6 border-t-2 border-r-2 border-cyan-400 rounded-tr-sm" />
-                  <div className="absolute bottom-4 left-4 w-6 h-6 border-b-2 border-l-2 border-cyan-400 rounded-bl-sm" />
-                  <div className="absolute bottom-4 right-4 w-6 h-6 border-b-2 border-r-2 border-cyan-400 rounded-br-sm" />
+                  {/* High-Tech Corner Target Brackets (Non-overlapping) */}
+                  <div className="absolute top-2 left-2 w-4 h-4 sm:w-5 sm:h-5 border-t-2 border-l-2 border-cyan-400/80 rounded-tl-sm pointer-events-none" />
+                  <div className="absolute top-2 right-2 w-4 h-4 sm:w-5 sm:h-5 border-t-2 border-r-2 border-cyan-400/80 rounded-tr-sm pointer-events-none" />
+                  <div className="absolute bottom-2 left-2 w-4 h-4 sm:w-5 sm:h-5 border-b-2 border-l-2 border-cyan-400/80 rounded-bl-sm pointer-events-none" />
+                  <div className="absolute bottom-2 right-2 w-4 h-4 sm:w-5 sm:h-5 border-b-2 border-r-2 border-cyan-400/80 rounded-br-sm pointer-events-none" />
 
-                  {/* Horizontal Scan Ray Animation */}
-                  <motion.div
-                    className="absolute left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_15px_#38BDF8]"
-                    animate={{ top: ['15%', '85%', '15%'] }}
-                    transition={{ duration: 3.5, repeat: Infinity, ease: 'linear' }}
-                  />
+                  {/* Top HUD Telemetry Status Bar */}
+                  <div className="relative z-20 w-full flex items-center justify-between px-1.5 sm:px-2 pt-0.5">
+                    <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-[#0B2E45]/85 border border-cyan-500/30 backdrop-blur-md text-[9.5px] sm:text-[10px] font-mono text-cyan-300 shadow-xs">
+                      <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-ping"></span>
+                      <span>LATENCY: 38ms • 60 FPS</span>
+                    </div>
 
-                  {/* Target Person Focus Card */}
-                  <div className="relative z-10 flex flex-col items-center">
+                    <div className="hidden sm:flex items-center gap-1 px-2 py-0.5 rounded-md bg-cyan-950/70 border border-cyan-500/25 text-[9.5px] font-mono text-cyan-300 tracking-wider">
+                      <Eye className="w-3 h-3 text-cyan-400" />
+                      <span>3D MESH ACTIVE</span>
+                    </div>
+
+                    <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-emerald-950/85 border border-emerald-500/40 backdrop-blur-md text-[9.5px] sm:text-[10px] font-mono text-emerald-300 shadow-xs">
+                      <ShieldCheck className="w-3 h-3 text-emerald-400" />
+                      <span>3D LIVENESS: PASS</span>
+                    </div>
+                  </div>
+
+                  {/* Center Biometric Target Reticle */}
+                  <div className="relative z-10 flex flex-col items-center my-auto py-1">
                     <div className="relative">
-                      {/* Avatar Image with Active Biometric Mesh Ring */}
-                      <div className="h-28 w-28 sm:h-32 sm:w-32 rounded-full border-2 border-cyan-400 p-1 shadow-[0_0_25px_rgba(43,159,177,0.5)]">
+                      {/* Outer Rotating Dashed Target Ring */}
+                      <div className="absolute -inset-3 sm:-inset-3.5 rounded-full border border-dashed border-cyan-400/40 animate-[spin_14s_linear_infinite] pointer-events-none" />
+                      
+                      {/* Pulsing Radar Ring */}
+                      <div className="absolute -inset-1 rounded-full border border-cyan-400/30 animate-pulse pointer-events-none" />
+
+                      {/* Micro Crosshair Accents */}
+                      <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-2.5 h-[1.5px] bg-cyan-400 pointer-events-none" />
+                      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-2.5 h-[1.5px] bg-cyan-400 pointer-events-none" />
+                      <div className="absolute top-1/2 -left-2 -translate-y-1/2 w-[1.5px] h-2.5 bg-cyan-400 pointer-events-none" />
+                      <div className="absolute top-1/2 -right-2 -translate-y-1/2 w-[1.5px] h-2.5 bg-cyan-400 pointer-events-none" />
+
+                      {/* Laser Scanline */}
+                      <motion.div
+                        className="absolute -left-3 -right-3 h-[2px] bg-gradient-to-r from-transparent via-cyan-300 to-transparent shadow-[0_0_12px_#38BDF8] z-20 pointer-events-none"
+                        animate={{ top: ['5%', '95%', '5%'] }}
+                        transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
+                      />
+
+                      {/* Avatar with Biometric Border */}
+                      <div className="h-24 w-24 sm:h-28 sm:w-28 rounded-full border-2 border-cyan-400 p-1 bg-[#092B42]/70 shadow-[0_0_25px_rgba(43,159,177,0.45)] relative overflow-hidden">
                         <img
                           src={currentDetection.avatar}
                           alt={currentDetection.name}
@@ -461,39 +492,51 @@ export default function HomePage() {
                         />
                       </div>
 
-                      {/* Biometric Match Verified Badge */}
-                      <div className="absolute -bottom-2 -right-1 flex items-center gap-1 rounded-full bg-emerald-500 px-2.5 py-0.5 text-[11px] font-bold text-white shadow-lg border border-white">
+                      {/* Match Verified Badge */}
+                      <div className="absolute -bottom-2 -right-1 flex items-center gap-1 rounded-full bg-emerald-500 px-2 sm:px-2.5 py-0.5 text-[10px] sm:text-[11px] font-bold text-white shadow-lg border border-white/80 ring-2 ring-emerald-950/40 z-20">
                         <Check className="h-3 w-3 stroke-[3]" />
-                        <span>{currentDetection.confidence}</span>
+                        <span>{currentDetection.confidence} MATCH</span>
                       </div>
                     </div>
 
-                    {/* Detected Student Floating HUD Card */}
-                    <div className="mt-3 rounded-xl bg-[#092B42]/90 border border-cyan-500/40 px-4 py-2 text-center backdrop-blur-md">
-                      <p className="text-sm font-bold text-white flex items-center justify-center gap-1.5">
-                        {currentDetection.name}
-                        <span className="text-[10px] font-mono text-cyan-300 font-normal">({currentDetection.id})</span>
-                      </p>
-                      <p className="text-[11px] text-cyan-200/80 font-medium">
-                        {currentDetection.dept} • <span className="text-emerald-400 font-bold">Logged at {currentDetection.time}</span>
-                      </p>
+                    {/* Detected Student Holographic Card */}
+                    <div className="mt-3.5 w-full max-w-[260px] sm:max-w-xs rounded-xl bg-[#082338]/90 border border-cyan-500/35 px-3 py-1.5 sm:py-2 text-center backdrop-blur-md shadow-lg shadow-black/30">
+                      <div className="flex items-center justify-between gap-1.5 border-b border-cyan-500/20 pb-1 mb-1">
+                        <span className="text-xs sm:text-sm font-bold text-white truncate flex items-center gap-1.5">
+                          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 inline-block animate-pulse"></span>
+                          {currentDetection.name}
+                        </span>
+                        <span className="text-[9.5px] font-mono text-cyan-300 font-semibold bg-cyan-950/80 px-1.5 py-0.5 rounded border border-cyan-500/30 shrink-0">
+                          {currentDetection.id}
+                        </span>
+                      </div>
+                      <div className="flex items-center justify-between text-[10px] sm:text-[11px] text-cyan-200/80 font-medium">
+                        <span className="truncate">{currentDetection.dept}</span>
+                        <span className="text-emerald-400 font-bold ml-1 shrink-0">Logged: {currentDetection.time}</span>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Telemetry HUD badges */}
-                  <div className="absolute top-3 left-4 text-[10px] font-mono text-cyan-300/80">
-                    LATENCY: 38ms | FPS: 60
-                  </div>
-                  <div className="absolute top-3 right-4 text-[10px] font-mono text-emerald-400">
-                    LIVENESS: PASS (3D)
+                  {/* Bottom Telemetry Bar */}
+                  <div className="relative z-20 w-full flex items-center justify-between px-1.5 sm:px-2 pb-0.5 text-[9px] sm:text-[9.5px] font-mono text-cyan-400/70">
+                    <span className="flex items-center gap-1">
+                      <Radio className="w-2.5 h-2.5 text-cyan-400 animate-pulse" />
+                      AUTONOMOUS SYNC
+                    </span>
+                    <span>5-ANGLE 3D MESH</span>
                   </div>
                 </div>
 
                 {/* Bottom Recent Recognized Ticker (Interactive Selectors) */}
                 <div className="mt-4">
-                  <p className="text-[11px] font-bold text-[#4e7183] uppercase tracking-wider mb-2">
-                    Live Stream Verification Queue (Click to inspect):
-                  </p>
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="text-[11px] font-bold text-[#4e7183] uppercase tracking-wider">
+                      Live Stream Verification Queue:
+                    </p>
+                    <span className="text-[10px] text-[#2B9FB1] font-semibold hidden sm:inline-block">
+                      Click to inspect
+                    </span>
+                  </div>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                     {mockDetections.map((det, idx) => (
                       <button
