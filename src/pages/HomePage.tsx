@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -14,6 +14,7 @@ import {
   Users,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { AttendAiLogo } from '@/components/AttendAiLogo';
 
 const sectionReveal = {
   hidden: { opacity: 0, y: 32 },
@@ -86,9 +87,21 @@ export default function HomePage() {
 
       <header className="sticky top-0 z-50 border-b border-[#d6e0e3] bg-[#eef3f4]/95 backdrop-blur-md">
         <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Link to="/" className="flex items-center gap-2.5">
-            <img src="logo.png" alt="AttendAI Logo" className="h-14 w-14 scale-[1.2] object-contain sm:h-16 sm:w-16" />
-            <span className="text-3xl font-extrabold tracking-tight text-[#0B2A3F]">AttendAI</span>
+          <Link to="/" className="flex items-center gap-3">
+            <div className="h-11 w-11 rounded-xl bg-gradient-to-br from-[#0B2E45] via-[#103D5B] to-[#2B9FB1] p-[1.5px] shadow-md flex items-center justify-center">
+              <div className="w-full h-full rounded-[10px] bg-white flex items-center justify-center p-1.5">
+                <AttendAiLogo className="w-full h-full object-contain" />
+              </div>
+            </div>
+            <div className="flex items-center gap-1.5">
+              <span className="text-2xl font-black tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#0B2E45] via-[#104868] to-[#2B9FB1]">
+                AttendAi
+              </span>
+              <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md text-[10px] font-bold bg-[#2B9FB1]/15 text-[#1b7f90] border border-[#2B9FB1]/20">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#2B9FB1] animate-pulse"></span>
+                Ai
+              </span>
+            </div>
           </Link>
 
           <nav className="hidden items-center gap-8 text-sm font-semibold md:flex">
@@ -163,7 +176,7 @@ export default function HomePage() {
               without manual work.
             </h1>
             <p className="mt-5 max-w-lg text-base leading-relaxed text-[#395567] sm:text-lg">
-              AttendAI helps schools and organizations automate attendance with face recognition, live tracking, and reliable analytics.
+              AttendAi helps schools and organizations automate attendance with face recognition, live tracking, and reliable analytics.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Link to="/signup">
@@ -437,7 +450,7 @@ export default function HomePage() {
               <div>
                 <p className="text-xs font-semibold uppercase tracking-wider text-[#7FD2DE]">Try It Now</p>
                 <h3 className="mt-2 max-w-2xl text-3xl font-bold text-white">Ready to level up your attendance process?</h3>
-                <p className="mt-2 max-w-xl text-sm text-[#cde5eb]">Deploy AttendAI and move from manual roll-calls to secure, intelligent attendance workflows.</p>
+                <p className="mt-2 max-w-xl text-sm text-[#cde5eb]">Deploy AttendAi and move from manual roll-calls to secure, intelligent attendance workflows.</p>
               </div>
               <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
                 <Link to="/signup">
@@ -457,9 +470,13 @@ export default function HomePage() {
       <footer className="border-t border-[#d6e0e3] bg-[#E6EDF0] py-10">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 sm:px-6 lg:px-8 md:flex-row md:items-start md:justify-between">
           <div>
-            <div className="flex items-center gap-2.5">
-              <img src="logo.png" alt="AttendAI Logo" className="h-14 w-14 scale-[1.3] object-contain sm:h-16 sm:w-16" />
-              <span className="text-xl font-extrabold text-[#0B2A3F]">AttendAI</span>
+            <div className="flex items-center gap-3">
+              <div className="h-9 w-9 rounded-lg bg-gradient-to-br from-[#0B2E45] to-[#2B9FB1] p-[1px] shadow-sm flex items-center justify-center">
+                <div className="w-full h-full rounded-[7px] bg-white flex items-center justify-center p-1">
+                  <AttendAiLogo className="w-full h-full object-contain" />
+                </div>
+              </div>
+              <span className="text-xl font-extrabold text-[#0B2A3F]">AttendAi</span>
             </div>
             <p className="mt-3 max-w-sm text-sm text-[#4c6673]">AI attendance software designed for reliable tracking, fraud prevention, and real operational visibility.</p>
           </div>
@@ -486,7 +503,7 @@ export default function HomePage() {
           </div>
         </div>
         <p className="mx-auto mt-6 w-full max-w-7xl border-t border-[#d1dde1] px-4 pt-6 text-center text-xs text-[#607987] sm:px-6 lg:px-8">
-          © {new Date().getFullYear()} AttendAI. All rights reserved.
+          © {new Date().getFullYear()} AttendAi. All rights reserved.
         </p>
       </footer>
     </div>

@@ -104,7 +104,7 @@ const DashboardLayout = () => {
             <div className="flex items-center gap-3">
               <SidebarTrigger className="text-[#325264] hover:bg-slate-100 rounded-lg p-2" />
               <div className="hidden sm:flex items-center gap-2 text-xs font-semibold text-slate-500">
-                <span>AttendAI</span>
+                <span>AttendAi</span>
                 <span>/</span>
                 <span className="text-[#0B2E45] font-bold">{getPageTitle(location.pathname)}</span>
               </div>

@@ -8,6 +8,7 @@ import {
   Settings,
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
+import { AttendAiLogo } from "@/components/AttendAiLogo";
 import { useAuth } from "@/contexts/AuthContext";
 import { useLocation } from "react-router-dom";
 import {
@@ -52,27 +53,32 @@ export function AppSidebar() {
       <SidebarHeader className="p-3">
         <NavLink
           to="/"
-          className={`w-full rounded-2xl border border-[#d2e1e5] bg-gradient-to-b from-white to-[#f0f6f8] shadow-sm hover:border-[#2B9FB1]/50 hover:shadow-md transition-all duration-300 group ${collapsed ? "flex justify-center p-2" : "flex items-center gap-3 px-3 py-3"}`}
+          className={`w-full rounded-2xl border border-[#d2e1e5] bg-gradient-to-br from-white via-[#fcfefe] to-[#f0f7f9] shadow-sm hover:border-[#2B9FB1]/50 hover:shadow-md hover:shadow-[#2B9FB1]/10 transition-all duration-300 group ${
+            collapsed ? "flex justify-center p-2" : "flex items-center gap-3 p-2.5"
+          }`}
         >
-          <div className={`rounded-xl bg-white border border-[#d8e5e9] shadow-inner flex items-center justify-center ${collapsed ? "h-12 w-12" : "h-14 w-14"}`}>
-            <img
-              src="logo.png"
-              alt="AttendAI Logo"
-              className={`object-contain drop-shadow-[0_0_12px_rgba(43,159,177,0.25)] ${collapsed ? "h-8 w-8" : "h-10 w-10"}`}
-            />
+          <div
+            className={`rounded-xl bg-gradient-to-br from-[#0B2E45] via-[#103D5B] to-[#2B9FB1] p-[1.5px] shadow-md group-hover:shadow-[#2B9FB1]/30 transition-all duration-300 flex-shrink-0 ${
+              collapsed ? "h-11 w-11" : "h-12 w-12"
+            }`}
+          >
+            <div className="w-full h-full rounded-[10px] bg-white flex items-center justify-center p-1.5 transition-transform duration-300 group-hover:scale-[1.02]">
+              <AttendAiLogo className="w-full h-full object-contain" showGlow={false} />
+            </div>
           </div>
 
           {!collapsed && (
-            <div className="min-w-0">
+            <div className="min-w-0 flex-1">
               <div className="flex items-center gap-1.5">
-                <h1 className="font-display font-extrabold text-[1.65rem] leading-none bg-clip-text text-transparent bg-gradient-to-r from-[#0B2E45] to-[#2B9FB1]">
-                  AttendAI
+                <h1 className="font-display font-extrabold text-[1.35rem] tracking-tight leading-none bg-clip-text text-transparent bg-gradient-to-r from-[#0B2E45] via-[#104868] to-[#2B9FB1]">
+                  AttendAi
                 </h1>
-                <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-[#2B9FB1]/15 text-[#2B9FB1]">
-                  AI
+                <span className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md text-[10px] font-bold bg-[#2B9FB1]/15 text-[#1b7f90] border border-[#2B9FB1]/20">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#2B9FB1] animate-pulse"></span>
+                  Ai
                 </span>
               </div>
-              <p className="text-xs text-sidebar-foreground/70 font-medium mt-1 truncate">Smart Face Attendance</p>
+              <p className="text-[11px] text-[#4b6d80] font-medium mt-1 truncate">Smart Face Attendance</p>
             </div>
           )}
         </NavLink>

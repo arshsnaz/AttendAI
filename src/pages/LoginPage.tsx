@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Eye, EyeOff, Mail, Lock, ArrowLeft, ShieldCheck, Sparkles } from "lucide-react";
+import { AttendAiLogo } from "@/components/AttendAiLogo";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -47,16 +48,20 @@ export default function LoginPage() {
 
       <div className="w-full max-w-md animate-rise relative z-10">
         <div className="text-center mb-6">
-          <div className="inline-flex items-center justify-center h-20 w-20 rounded-3xl bg-white border border-[#d2e1e5] shadow-lg mb-3">
-            <img
-              src="logo.png"
-              alt="AttendAI Logo"
-              className="h-12 w-12 object-contain drop-shadow-md"
-            />
+          <div className="inline-flex items-center justify-center h-20 w-20 rounded-3xl bg-gradient-to-br from-[#0B2E45] via-[#103D5B] to-[#2B9FB1] p-[2px] shadow-xl mb-3">
+            <div className="w-full h-full rounded-[22px] bg-white flex items-center justify-center p-3">
+              <AttendAiLogo className="w-full h-full object-contain" showGlow />
+            </div>
           </div>
-          <h1 className="text-3xl font-display font-extrabold tracking-tight text-[#0B2E45]">
-            AttendAI
-          </h1>
+          <div className="flex items-center justify-center gap-2">
+            <h1 className="text-3xl font-display font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-[#0B2E45] via-[#104868] to-[#2B9FB1]">
+              AttendAi
+            </h1>
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold bg-[#2B9FB1]/15 text-[#1b7f90] border border-[#2B9FB1]/25">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#2B9FB1] animate-pulse"></span>
+              Ai
+            </span>
+          </div>
           <p className="text-muted-foreground mt-1 text-xs uppercase tracking-widest font-bold">
             AI-Powered Attendance Management
           </p>

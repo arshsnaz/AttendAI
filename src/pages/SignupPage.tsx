@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,6 +8,7 @@ import { Eye, EyeOff, UserPlus, Fingerprint, Mail, Lock, ArrowLeft } from "lucid
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"; 
 import { toast } from "sonner";
 import { API_URL } from "@/lib/api";
+import { AttendAiLogo } from "@/components/AttendAiLogo";
 
 export default function SignupPage() {
   const [formData, setFormData] = useState({
@@ -88,11 +89,13 @@ export default function SignupPage() {
 
       <div className="w-full max-w-md animate-rise relative z-10 my-8">
         <div className="text-center mb-8 animate-rise-delay-1">
-          <div className="inline-flex items-center justify-center h-40 mb-4">
-            <img src="logo.png" alt="AttendAI Logo" className="h-20 md:h-28 object-contain drop-shadow-xl transition-transform hover:scale-105 duration-300" />
+          <div className="inline-flex items-center justify-center h-20 w-20 rounded-3xl bg-gradient-to-br from-[#0B2E45] via-[#103D5B] to-[#2B9FB1] p-[2px] shadow-xl mb-4">
+            <div className="w-full h-full rounded-[22px] bg-white flex items-center justify-center p-3">
+              <AttendAiLogo className="w-full h-full object-contain" showGlow />
+            </div>
           </div>
           <h1 className="text-4xl font-display font-bold tracking-tight text-[#0D2237]">Create Account</h1>
-          <p className="text-muted-foreground mt-2 text-sm uppercase tracking-widest font-semibold">Join the next generation attendance system</p>
+          <p className="text-muted-foreground mt-2 text-sm uppercase tracking-widest font-semibold">Join AttendAi modern attendance system</p>
         </div>
 
         <Card className="shadow-[0_16px_36px_rgba(9,42,58,0.12)] border-[#d2e1e5] backdrop-blur-xl bg-white/95 overflow-hidden relative animate-rise-delay-2">

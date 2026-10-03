@@ -81,7 +81,7 @@ const ReportsPage = () => {
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
-    link.setAttribute("download", `AttendAI_Compliance_Report_${dateFilter}.csv`);
+    link.setAttribute("download", `AttendAi_Compliance_Report_${dateFilter}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
