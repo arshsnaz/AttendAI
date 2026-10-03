@@ -420,7 +420,7 @@ export default function HomePage() {
                   <div className="flex items-center gap-2">
                     <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-bold text-emerald-700 border border-emerald-200">
                       <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                      AI Scanner Active
+                      Live Session Active
                     </span>
                   </div>
                 </div>
