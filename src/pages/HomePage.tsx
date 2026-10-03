@@ -259,15 +259,15 @@ export default function HomePage() {
 
       {/* Navigation Bar */}
       <header className="sticky top-0 z-40 border-b border-[#d2e1e5]/80 bg-[#eef3f4]/90 backdrop-blur-xl transition-all">
-        <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           {/* Brand Logo */}
-          <Link to="/" className="group flex items-center gap-2.5">
-            <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-[#0B2E45] via-[#103D5B] to-[#2B9FB1] p-[1.5px] shadow-md transition-transform duration-300 group-hover:scale-105">
-              <div className="flex h-full w-full items-center justify-center rounded-[9px] bg-white p-1">
+          <Link to="/" className="group flex items-center gap-3">
+            <div className="h-11 w-11 rounded-xl bg-gradient-to-br from-[#0B2E45] via-[#103D5B] to-[#2B9FB1] p-[1.5px] shadow-md transition-transform duration-300 group-hover:scale-105">
+              <div className="flex h-full w-full items-center justify-center rounded-[10px] bg-white p-1.5">
                 <AttendAiLogo className="h-full w-full object-contain" />
               </div>
             </div>
-            <span className="bg-gradient-to-r from-[#0B2E45] via-[#104868] to-[#2B9FB1] bg-clip-text font-display text-xl font-black tracking-tight text-transparent">
+            <span className="bg-gradient-to-r from-[#0B2E45] via-[#104868] to-[#2B9FB1] bg-clip-text font-display text-[1.45rem] font-black tracking-tight text-transparent">
               AttendAi
             </span>
           </Link>
@@ -277,7 +277,7 @@ export default function HomePage() {
             {navItems.map((item) => (
               <button
                 key={item.id}
-                className="rounded-full px-4 py-1 text-xs font-bold text-[#2a4d5e] transition-all duration-200 hover:bg-white hover:text-[#0B2E45] hover:shadow-xs"
+                className="rounded-full px-4 py-1.5 text-xs font-bold text-[#2a4d5e] transition-all duration-200 hover:bg-white hover:text-[#0B2E45] hover:shadow-xs"
                 onClick={() => scrollTo(item.id)}
               >
                 {item.label}
@@ -290,13 +290,13 @@ export default function HomePage() {
             <Link to="/login">
               <Button
                 variant="ghost"
-                className="h-9 rounded-full px-4 text-xs font-bold text-[#1f495e] hover:bg-white hover:text-[#0B2E45] transition-all"
+                className="h-10 rounded-full px-4 text-xs font-bold text-[#1f495e] hover:bg-white hover:text-[#0B2E45] transition-all"
               >
                 Sign In
               </Button>
             </Link>
             <Link to="/login">
-              <Button className="group h-9 rounded-full bg-gradient-to-r from-[#2B9FB1] to-[#1E7D8C] px-4.5 text-xs font-bold text-white shadow-md shadow-[#2B9FB1]/20 transition-all duration-200 hover:shadow-lg hover:shadow-[#2B9FB1]/30 hover:scale-105">
+              <Button className="group h-10 rounded-full bg-gradient-to-r from-[#2B9FB1] to-[#1E7D8C] px-5 text-xs font-bold text-white shadow-md shadow-[#2B9FB1]/20 transition-all duration-200 hover:shadow-lg hover:shadow-[#2B9FB1]/30 hover:scale-105">
                 Launch Workspace
                 <ArrowRight className="ml-1.5 h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
               </Button>
@@ -347,8 +347,8 @@ export default function HomePage() {
 
       <main className="relative z-10">
         {/* ================= HERO SECTION ================= */}
-        <section className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 py-6 lg:py-0 lg:min-h-[calc(100vh-100px)] flex flex-col justify-center">
-          <div className="grid gap-8 lg:gap-12 lg:grid-cols-12 lg:items-center">
+        <section className="relative mx-auto w-full max-w-7xl px-4 pb-20 pt-10 sm:px-6 lg:px-8 lg:pt-14">
+          <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
             {/* Left Hero Content */}
             <motion.div
               className="lg:col-span-6 xl:col-span-6"
@@ -357,7 +357,7 @@ export default function HomePage() {
               variants={sectionReveal}
             >
               {/* Main Headline */}
-              <h1 className="font-display text-3xl sm:text-4xl lg:text-[2.65rem] xl:text-[3.15rem] font-black leading-[1.12] tracking-tight text-[#0B2E45]">
+              <h1 className="font-display text-4xl font-black leading-[1.12] tracking-tight text-[#0B2E45] sm:text-5xl lg:text-[3.5rem]">
                 Autonomous Face Attendance.{' '}
                 <span className="bg-gradient-to-r from-[#2B9FB1] via-[#1E7D8C] to-[#0B2E45] bg-clip-text text-transparent">
                   Zero Proxy. Instant Cloud Sync.
@@ -365,14 +365,14 @@ export default function HomePage() {
               </h1>
 
               {/* Subheadline */}
-              <p className="mt-3.5 max-w-xl text-sm sm:text-base font-normal leading-relaxed text-[#406173]">
+              <p className="mt-6 max-w-xl text-base font-normal leading-relaxed text-[#406173] sm:text-lg">
                 Transform attendance workflows with <strong className="text-[#0B2E45] font-semibold">0.4-second neural recognition</strong>. Eliminate paper registers, stop proxy buddy-punching, and export certified institutional audit sheets with one click.
               </p>
 
               {/* Enhanced Primary CTA */}
-              <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-4">
+              <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
                 <Link to="/login" className="w-full sm:w-auto">
-                  <Button className="group h-12 sm:h-13 w-full rounded-2xl bg-gradient-to-r from-[#2B9FB1] via-[#1F8E9F] to-[#125A6C] px-8 text-sm sm:text-base font-bold text-white shadow-xl shadow-[#2B9FB1]/25 transition-all hover:scale-[1.02] hover:shadow-[#2B9FB1]/40 sm:w-auto">
+                  <Button className="group h-14 w-full rounded-2xl bg-gradient-to-r from-[#2B9FB1] via-[#1F8E9F] to-[#125A6C] px-9 text-base font-bold text-white shadow-xl shadow-[#2B9FB1]/25 transition-all hover:scale-[1.02] hover:shadow-[#2B9FB1]/40 sm:w-auto">
                     Sign In to Workspace
                     <ArrowRight className="ml-2.5 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Button>
@@ -380,7 +380,7 @@ export default function HomePage() {
               </div>
 
               {/* Trust Features Checklist */}
-              <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-4 border-t border-[#d2e1e5]/60 text-xs font-semibold text-[#32566b]">
+              <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 gap-3 pt-6 border-t border-[#d2e1e5]/60 text-xs font-semibold text-[#32566b]">
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="h-4 w-4 text-[#2B9FB1] flex-shrink-0" />
                   <span>Works on any webcam</span>
@@ -403,22 +403,22 @@ export default function HomePage() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.15, ease: 'easeOut' }}
             >
-              <div className="relative rounded-2xl sm:rounded-3xl border border-[#c5dce2] bg-gradient-to-b from-white via-white/95 to-[#f0f8fa] p-3.5 sm:p-5 shadow-2xl shadow-[#0B2E45]/10 backdrop-blur-xl">
+              <div className="relative rounded-3xl border border-[#c5dce2] bg-gradient-to-b from-white via-white/95 to-[#f0f8fa] p-4 sm:p-6 shadow-2xl shadow-[#0B2E45]/10 backdrop-blur-xl">
                 {/* HUD Header Bar */}
-                <div className="flex items-center justify-between border-b border-[#e2edf0] pb-2.5 mb-3">
+                <div className="flex items-center justify-between border-b border-[#e2edf0] pb-3.5 mb-4">
                   <div className="flex items-center gap-2.5">
-                    <div className="h-7 w-7 rounded-xl bg-[#0B2E45] flex items-center justify-center text-cyan-300">
-                      <ScanFace className="h-3.5 w-3.5" />
+                    <div className="h-8 w-8 rounded-xl bg-[#0B2E45] flex items-center justify-center text-cyan-300">
+                      <ScanFace className="h-4 w-4" />
                     </div>
                     <div>
                       <h4 className="text-xs font-extrabold text-[#0B2E45] uppercase tracking-wider">
                         Live Attendance Feed
                       </h4>
-                      <p className="text-[10.5px] text-[#52778a] font-medium">Room A-204 • CS-402 Lecture</p>
+                      <p className="text-[11px] text-[#52778a] font-medium">Room A-204 • CS-402 Lecture</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-0.5 text-[10.5px] font-bold text-emerald-700 border border-emerald-200">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2.5 py-1 text-[11px] font-bold text-emerald-700 border border-emerald-200">
                       <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                       Live Session Active
                     </span>
@@ -426,7 +426,7 @@ export default function HomePage() {
                 </div>
 
                 {/* Simulated Camera Viewfinder with Biometric Overlays */}
-                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-[#061b29] via-[#092538] to-[#041420] aspect-[16/10] max-h-[260px] sm:max-h-[290px] flex flex-col items-center justify-between p-2.5 sm:p-3 border border-cyan-500/30 shadow-2xl shadow-[#0B2E45]/40">
+                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-b from-[#061b29] via-[#092538] to-[#041420] aspect-[16/11] sm:aspect-[16/10] flex flex-col items-center justify-between p-3 sm:p-4 border border-cyan-500/30 shadow-2xl shadow-[#0B2E45]/40">
                   {/* Subtle Grid & Radial Scan Lines */}
                   <div
                     className="absolute inset-0 opacity-20 pointer-events-none"
@@ -445,46 +445,46 @@ export default function HomePage() {
 
                   {/* Top HUD Telemetry Status Bar */}
                   <div className="relative z-20 w-full flex items-center justify-between px-1.5 sm:px-2 pt-0.5">
-                    <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-[#0B2E45]/85 border border-cyan-500/30 backdrop-blur-md text-[9px] sm:text-[9.5px] font-mono text-cyan-300 shadow-xs">
+                    <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-[#0B2E45]/85 border border-cyan-500/30 backdrop-blur-md text-[9.5px] sm:text-[10px] font-mono text-cyan-300 shadow-xs">
                       <span className="h-1.5 w-1.5 rounded-full bg-cyan-400 animate-ping"></span>
                       <span>LATENCY: 38ms • 60 FPS</span>
                     </div>
 
-                    <div className="hidden sm:flex items-center gap-1 px-2 py-0.5 rounded-md bg-cyan-950/70 border border-cyan-500/25 text-[9px] font-mono text-cyan-300 tracking-wider">
+                    <div className="hidden sm:flex items-center gap-1 px-2 py-0.5 rounded-md bg-cyan-950/70 border border-cyan-500/25 text-[9.5px] font-mono text-cyan-300 tracking-wider">
                       <Eye className="w-3 h-3 text-cyan-400" />
                       <span>3D MESH ACTIVE</span>
                     </div>
 
-                    <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-emerald-950/85 border border-emerald-500/40 backdrop-blur-md text-[9px] sm:text-[9.5px] font-mono text-emerald-300 shadow-xs">
+                    <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-emerald-950/85 border border-emerald-500/40 backdrop-blur-md text-[9.5px] sm:text-[10px] font-mono text-emerald-300 shadow-xs">
                       <ShieldCheck className="w-3 h-3 text-emerald-400" />
                       <span>3D LIVENESS: PASS</span>
                     </div>
                   </div>
 
                   {/* Center Biometric Target Reticle */}
-                  <div className="relative z-10 flex flex-col items-center my-auto py-0.5">
+                  <div className="relative z-10 flex flex-col items-center my-auto py-1">
                     <div className="relative">
                       {/* Outer Rotating Dashed Target Ring */}
-                      <div className="absolute -inset-2.5 sm:-inset-3 rounded-full border border-dashed border-cyan-400/40 animate-[spin_14s_linear_infinite] pointer-events-none" />
+                      <div className="absolute -inset-3 sm:-inset-3.5 rounded-full border border-dashed border-cyan-400/40 animate-[spin_14s_linear_infinite] pointer-events-none" />
                       
                       {/* Pulsing Radar Ring */}
                       <div className="absolute -inset-1 rounded-full border border-cyan-400/30 animate-pulse pointer-events-none" />
 
                       {/* Micro Crosshair Accents */}
-                      <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-2 h-[1.5px] bg-cyan-400 pointer-events-none" />
-                      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-2 h-[1.5px] bg-cyan-400 pointer-events-none" />
-                      <div className="absolute top-1/2 -left-2 -translate-y-1/2 w-[1.5px] h-2 bg-cyan-400 pointer-events-none" />
-                      <div className="absolute top-1/2 -right-2 -translate-y-1/2 w-[1.5px] h-2 bg-cyan-400 pointer-events-none" />
+                      <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-2.5 h-[1.5px] bg-cyan-400 pointer-events-none" />
+                      <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-2.5 h-[1.5px] bg-cyan-400 pointer-events-none" />
+                      <div className="absolute top-1/2 -left-2 -translate-y-1/2 w-[1.5px] h-2.5 bg-cyan-400 pointer-events-none" />
+                      <div className="absolute top-1/2 -right-2 -translate-y-1/2 w-[1.5px] h-2.5 bg-cyan-400 pointer-events-none" />
 
                       {/* Laser Scanline */}
                       <motion.div
-                        className="absolute -left-2.5 -right-2.5 h-[2px] bg-gradient-to-r from-transparent via-cyan-300 to-transparent shadow-[0_0_12px_#38BDF8] z-20 pointer-events-none"
+                        className="absolute -left-3 -right-3 h-[2px] bg-gradient-to-r from-transparent via-cyan-300 to-transparent shadow-[0_0_12px_#38BDF8] z-20 pointer-events-none"
                         animate={{ top: ['5%', '95%', '5%'] }}
                         transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut' }}
                       />
 
                       {/* Avatar with Biometric Border */}
-                      <div className="h-20 w-20 sm:h-24 sm:w-24 rounded-full border-2 border-cyan-400 p-1 bg-[#092B42]/70 shadow-[0_0_25px_rgba(43,159,177,0.45)] relative overflow-hidden">
+                      <div className="h-24 w-24 sm:h-28 sm:w-28 rounded-full border-2 border-cyan-400 p-1 bg-[#092B42]/70 shadow-[0_0_25px_rgba(43,159,177,0.45)] relative overflow-hidden">
                         <img
                           src={currentDetection.avatar}
                           alt={currentDetection.name}
@@ -493,24 +493,24 @@ export default function HomePage() {
                       </div>
 
                       {/* Match Verified Badge */}
-                      <div className="absolute -bottom-1.5 -right-1 flex items-center gap-1 rounded-full bg-emerald-500 px-2 py-0.5 text-[9.5px] sm:text-[10px] font-bold text-white shadow-lg border border-white/80 ring-2 ring-emerald-950/40 z-20">
+                      <div className="absolute -bottom-2 -right-1 flex items-center gap-1 rounded-full bg-emerald-500 px-2 sm:px-2.5 py-0.5 text-[10px] sm:text-[11px] font-bold text-white shadow-lg border border-white/80 ring-2 ring-emerald-950/40 z-20">
                         <Check className="h-3 w-3 stroke-[3]" />
                         <span>{currentDetection.confidence} MATCH</span>
                       </div>
                     </div>
 
                     {/* Detected Student Holographic Card */}
-                    <div className="mt-2.5 w-full max-w-[240px] sm:max-w-[270px] rounded-xl bg-[#082338]/90 border border-cyan-500/35 px-2.5 py-1 text-center backdrop-blur-md shadow-lg shadow-black/30">
-                      <div className="flex items-center justify-between gap-1 border-b border-cyan-500/20 pb-0.5 mb-0.5">
-                        <span className="text-xs font-bold text-white truncate flex items-center gap-1">
+                    <div className="mt-3.5 w-full max-w-[260px] sm:max-w-xs rounded-xl bg-[#082338]/90 border border-cyan-500/35 px-3 py-1.5 sm:py-2 text-center backdrop-blur-md shadow-lg shadow-black/30">
+                      <div className="flex items-center justify-between gap-1.5 border-b border-cyan-500/20 pb-1 mb-1">
+                        <span className="text-xs sm:text-sm font-bold text-white truncate flex items-center gap-1.5">
                           <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 inline-block animate-pulse"></span>
                           {currentDetection.name}
                         </span>
-                        <span className="text-[9px] font-mono text-cyan-300 font-semibold bg-cyan-950/80 px-1 py-0.2 rounded border border-cyan-500/30 shrink-0">
+                        <span className="text-[9.5px] font-mono text-cyan-300 font-semibold bg-cyan-950/80 px-1.5 py-0.5 rounded border border-cyan-500/30 shrink-0">
                           {currentDetection.id}
                         </span>
                       </div>
-                      <div className="flex items-center justify-between text-[9.5px] sm:text-[10px] text-cyan-200/80 font-medium">
+                      <div className="flex items-center justify-between text-[10px] sm:text-[11px] text-cyan-200/80 font-medium">
                         <span className="truncate">{currentDetection.dept}</span>
                         <span className="text-emerald-400 font-bold ml-1 shrink-0">Logged: {currentDetection.time}</span>
                       </div>
@@ -518,7 +518,7 @@ export default function HomePage() {
                   </div>
 
                   {/* Bottom Telemetry Bar */}
-                  <div className="relative z-20 w-full flex items-center justify-between px-1.5 sm:px-2 pb-0.5 text-[8.5px] sm:text-[9px] font-mono text-cyan-400/70">
+                  <div className="relative z-20 w-full flex items-center justify-between px-1.5 sm:px-2 pb-0.5 text-[9px] sm:text-[9.5px] font-mono text-cyan-400/70">
                     <span className="flex items-center gap-1">
                       <Radio className="w-2.5 h-2.5 text-cyan-400 animate-pulse" />
                       AUTONOMOUS SYNC
@@ -528,36 +528,36 @@ export default function HomePage() {
                 </div>
 
                 {/* Bottom Recent Recognized Ticker (Interactive Selectors) */}
-                <div className="mt-3">
-                  <div className="flex items-center justify-between mb-1.5">
-                    <p className="text-[10.5px] font-bold text-[#4e7183] uppercase tracking-wider">
+                <div className="mt-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="text-[11px] font-bold text-[#4e7183] uppercase tracking-wider">
                       Live Stream Verification Queue:
                     </p>
-                    <span className="text-[9.5px] text-[#2B9FB1] font-semibold hidden sm:inline-block">
+                    <span className="text-[10px] text-[#2B9FB1] font-semibold hidden sm:inline-block">
                       Click to inspect
                     </span>
                   </div>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-2">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                     {mockDetections.map((det, idx) => (
                       <button
                         key={det.id}
                         type="button"
                         onClick={() => setActiveDetectionIndex(idx)}
-                        className={`flex items-center gap-1.5 p-1.5 rounded-xl border text-left transition-all ${
+                        className={`flex items-center gap-2 p-2 rounded-xl border text-left transition-all ${
                           activeDetectionIndex === idx
                             ? 'bg-[#2B9FB1]/15 border-[#2B9FB1] ring-1 ring-[#2B9FB1]/30 shadow-xs'
                             : 'bg-white/80 border-[#d2e1e5] hover:bg-[#f2f8fa]'
                         }`}
                       >
                         <div className="relative flex-shrink-0">
-                          <img src={det.avatar} alt={det.name} className="h-6 w-6 sm:h-7 sm:w-7 rounded-full object-cover ring-1 ring-[#d2e1e5]" />
+                          <img src={det.avatar} alt={det.name} className="h-7 w-7 sm:h-8 sm:w-8 rounded-full object-cover ring-1 ring-[#d2e1e5]" />
                           {activeDetectionIndex === idx && (
-                            <span className="absolute -top-0.5 -right-0.5 w-1.5 h-1.5 bg-emerald-500 rounded-full ring-1 ring-white" />
+                            <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-emerald-500 rounded-full ring-1 ring-white" />
                           )}
                         </div>
                         <div className="min-w-0 flex-1">
-                          <p className="text-[10.5px] font-bold text-[#0B2E45] truncate leading-tight">{det.name.split(' ')[0]}</p>
-                          <p className="text-[9px] text-emerald-600 font-bold leading-tight">{det.confidence}</p>
+                          <p className="text-[11px] font-bold text-[#0B2E45] truncate leading-tight">{det.name.split(' ')[0]}</p>
+                          <p className="text-[9.5px] text-emerald-600 font-bold leading-tight">{det.confidence}</p>
                         </div>
                       </button>
                     ))}
@@ -569,7 +569,7 @@ export default function HomePage() {
         </section>
 
         {/* ================= TECHNICAL & ARCHITECTURAL STATS BANNER ================= */}
-        <section className="mx-auto w-full max-w-7xl px-4 py-12 sm:py-16 sm:px-6 lg:px-8">
+        <section className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="rounded-3xl border border-[#cbe0e6] bg-white/95 p-6 sm:p-8 shadow-sm backdrop-blur-md">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center divide-y sm:divide-y-0 sm:divide-x divide-[#e2edf0]">
               <div className="pt-4 sm:pt-0">
