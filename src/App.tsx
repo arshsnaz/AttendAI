@@ -16,6 +16,9 @@ import NotFound from "@/pages/NotFound";
 import HomePage from "@/pages/HomePage";
 import SignupPage from "@/pages/SignupPage";
 import ArticlePage from "@/pages/ArticlePage";
+import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
+import TermsOfServicePage from "@/pages/TermsOfServicePage";
+import SecurityWhitepaperPage from "@/pages/SecurityWhitepaperPage";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +33,12 @@ const App = () => (
             <Route path="/login" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/" element={<HomePage />} />
+            <Route path="/privacy" element={<PrivacyPolicyPage />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+            <Route path="/terms" element={<TermsOfServicePage />} />
+            <Route path="/terms-of-service" element={<TermsOfServicePage />} />
+            <Route path="/security" element={<SecurityWhitepaperPage />} />
+            <Route path="/security-whitepaper" element={<SecurityWhitepaperPage />} />
             <Route path="/article/:slug" element={<ArticlePage />} />
             <Route element={<DashboardLayout />}>
               <Route path="/dashboard" element={<DashboardPage />} />

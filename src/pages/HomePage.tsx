@@ -920,11 +920,17 @@ export default function HomePage() {
         <div className="mx-auto mt-10 w-full max-w-7xl border-t border-[#d1dde1] px-4 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[#607987] gap-3 sm:px-6 lg:px-8 text-center sm:text-left">
           <p>© {new Date().getFullYear()} AttendAi Platform. All rights reserved.</p>
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-xs">
-            <span className="hover:underline cursor-pointer whitespace-nowrap">Privacy Policy</span>
+            <Link to="/privacy" className="hover:text-[#0B2E45] hover:underline whitespace-nowrap">
+              Privacy Policy
+            </Link>
             <span className="text-slate-300 hidden sm:inline">•</span>
-            <span className="hover:underline cursor-pointer whitespace-nowrap">Terms of Service</span>
+            <Link to="/terms" className="hover:text-[#0B2E45] hover:underline whitespace-nowrap">
+              Terms of Service
+            </Link>
             <span className="text-slate-300 hidden sm:inline">•</span>
-            <span className="hover:underline cursor-pointer whitespace-nowrap">Security Whitepaper</span>
+            <Link to="/security" className="hover:text-[#0B2E45] hover:underline whitespace-nowrap">
+              Security Whitepaper
+            </Link>
           </div>
         </div>
       </footer>
