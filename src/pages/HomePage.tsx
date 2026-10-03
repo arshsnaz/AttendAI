@@ -741,35 +741,38 @@ export default function HomePage() {
 
               {/* Result KPI Card */}
               <div className="lg:col-span-6">
-                <div className="rounded-2xl bg-[#0B2E45] p-6 sm:p-8 text-white shadow-xl relative overflow-hidden border border-[#1a4b6b]">
-                  <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+                <div className="rounded-2xl bg-[#0B2E45] p-4 sm:p-7 md:p-8 text-white shadow-xl relative overflow-hidden border border-[#1a4b6b]">
+                  <div className="flex items-center justify-between border-b border-white/10 pb-3 sm:pb-4 mb-4 sm:mb-6">
                     <p className="text-xs font-bold text-cyan-300 uppercase tracking-wider">Estimated Monthly Impact</p>
-                    <span className="text-xs font-mono bg-cyan-400/20 text-cyan-300 px-2 py-0.5 rounded">
+                    <span className="text-[11px] font-mono bg-cyan-400/20 text-cyan-300 px-2 py-0.5 rounded">
                       Live Simulation
                     </span>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4 mb-6">
-                    <div className="rounded-xl bg-white/10 p-4 border border-white/10">
-                      <p className="text-xs text-cyan-200/80">Faculty Hours Saved</p>
-                      <p className="text-3xl sm:text-4xl font-black text-white mt-1">~{hoursSavedPerMonth}h</p>
-                      <p className="text-[10px] text-cyan-300 mt-1">per month / campus</p>
+                  <div className="grid grid-cols-2 gap-2.5 sm:gap-4 mb-4 sm:mb-6">
+                    <div className="rounded-xl bg-white/10 p-3 sm:p-4 border border-white/10">
+                      <p className="text-[11px] sm:text-xs text-cyan-200/80 leading-tight">Faculty Hours Saved</p>
+                      <p className="text-xl min-[380px]:text-2xl sm:text-3xl lg:text-4xl font-black text-white mt-1 truncate">~{hoursSavedPerMonth}h</p>
+                      <p className="text-[10px] text-cyan-300 mt-0.5 truncate">per month / campus</p>
                     </div>
 
-                    <div className="rounded-xl bg-white/10 p-4 border border-white/10">
-                      <p className="text-xs text-cyan-200/80">Proxy Fraud Cut</p>
-                      <p className="text-3xl sm:text-4xl font-black text-emerald-400 mt-1">99.8%</p>
-                      <p className="text-[10px] text-emerald-300 mt-1">Eliminated completely</p>
+                    <div className="rounded-xl bg-white/10 p-3 sm:p-4 border border-white/10">
+                      <p className="text-[11px] sm:text-xs text-cyan-200/80 leading-tight">Proxy Fraud Cut</p>
+                      <p className="text-xl min-[380px]:text-2xl sm:text-3xl lg:text-4xl font-black text-emerald-400 mt-1 truncate">99.8%</p>
+                      <p className="text-[10px] text-emerald-300 mt-0.5 truncate">Eliminated completely</p>
                     </div>
                   </div>
 
-                  <div className="rounded-xl bg-gradient-to-r from-[#2B9FB1] to-[#1E7D8C] p-4 text-white flex items-center justify-between">
+                  <div className="rounded-xl bg-gradient-to-r from-[#2B9FB1] to-[#1E7D8C] p-3.5 sm:p-4 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-md">
                     <div>
-                      <p className="text-xs text-white/90">Estimated Productivity Value</p>
-                      <p className="text-2xl font-extrabold text-white">${estimatedCostSaving.toLocaleString()} / mo</p>
+                      <p className="text-xs text-white/90 font-medium">Estimated Productivity Value</p>
+                      <p className="text-xl sm:text-2xl font-extrabold text-white mt-0.5">
+                        ${estimatedCostSaving.toLocaleString()}{" "}
+                        <span className="text-xs font-normal text-white/80">/ mo</span>
+                      </p>
                     </div>
-                    <Link to="/signup">
-                      <Button className="rounded-xl bg-white text-[#0B2E45] hover:bg-slate-100 text-xs font-bold shadow-md">
+                    <Link to="/signup" className="w-full sm:w-auto">
+                      <Button className="w-full sm:w-auto rounded-xl bg-white text-[#0B2E45] hover:bg-slate-100 text-xs font-bold shadow-md h-10 px-4">
                         Claim Savings
                       </Button>
                     </Link>
@@ -914,14 +917,14 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="mx-auto mt-10 w-full max-w-7xl border-t border-[#d1dde1] px-4 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[#607987] gap-3 sm:px-6 lg:px-8">
+        <div className="mx-auto mt-10 w-full max-w-7xl border-t border-[#d1dde1] px-4 pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[#607987] gap-3 sm:px-6 lg:px-8 text-center sm:text-left">
           <p>© {new Date().getFullYear()} AttendAi Platform. All rights reserved.</p>
-          <div className="flex items-center gap-4 text-xs">
-            <span className="hover:underline cursor-pointer">Privacy Policy</span>
-            <span>•</span>
-            <span className="hover:underline cursor-pointer">Terms of Service</span>
-            <span>•</span>
-            <span className="hover:underline cursor-pointer">Security Whitepaper</span>
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-xs">
+            <span className="hover:underline cursor-pointer whitespace-nowrap">Privacy Policy</span>
+            <span className="text-slate-300 hidden sm:inline">•</span>
+            <span className="hover:underline cursor-pointer whitespace-nowrap">Terms of Service</span>
+            <span className="text-slate-300 hidden sm:inline">•</span>
+            <span className="hover:underline cursor-pointer whitespace-nowrap">Security Whitepaper</span>
           </div>
         </div>
       </footer>
