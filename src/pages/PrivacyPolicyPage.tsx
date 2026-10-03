@@ -142,16 +142,33 @@ export default function PrivacyPolicyPage() {
 
           {/* Section 5 */}
           <div className="rounded-2xl border border-[#d2e1e5] bg-white p-6 sm:p-8 shadow-xs space-y-3">
-            <h2 className="text-xl font-bold font-display text-[#0B2E45] flex items-center gap-2">
-              <HelpCircle className="w-5 h-5 text-[#2B9FB1]" /> 5. Contact Privacy & Data Protection Officer
+            <h2 className="text-xl font-bold font-display text-[#0D2237] flex items-center gap-2">
+              <HelpCircle className="w-5 h-5 text-[#2B9FB1]" /> 5. Inquiries & Institutional Privacy Requests
             </h2>
             <p>
-              If you have inquiries regarding institutional privacy audits, GDPR data subject access requests, or FERPA verification:
+              For privacy audits, verification requests, or questions regarding institutional data governance:
             </p>
-            <div className="p-4 rounded-xl bg-cyan-50/60 border border-cyan-200/80 text-xs space-y-1 text-slate-700">
-              <p><strong>AttendAi Privacy & Compliance Office</strong></p>
-              <p>Email: <a href="mailto:privacy@attendai.com" className="text-[#2B9FB1] underline font-bold">privacy@attendai.com</a></p>
-              <p>Institutional Inquiries: <a href="mailto:compliance@attendai.com" className="text-[#2B9FB1] underline font-bold">compliance@attendai.com</a></p>
+            <div className="p-4 rounded-xl bg-cyan-50/60 border border-cyan-200/80 text-xs space-y-2.5 text-slate-700">
+              <p className="font-bold text-[#0D2237]">AttendAi Project & Institutional Governance</p>
+              <p>
+                Inquiries, compliance questions, and technical feedback can be submitted directly through the official project repository or via your institutional administrator portal.
+              </p>
+              <div className="pt-1 flex flex-wrap items-center gap-2.5">
+                <a
+                  href="https://github.com/arshsnaz/AttendAI"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#0B2E45] text-white hover:bg-[#104868] transition-colors font-medium text-xs shadow-xs"
+                >
+                  GitHub Project Repository
+                </a>
+                <Link
+                  to="/"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white text-[#0B2E45] border border-[#d2e1e5] hover:bg-slate-50 transition-colors font-medium text-xs shadow-xs"
+                >
+                  Return to Home
+                </Link>
+              </div>
             </div>
           </div>
         </div>
