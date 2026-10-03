@@ -34,6 +34,7 @@ import {
 } from "lucide-react";
 import {
   getStudents,
+  getLocalStudents,
   createStudent,
   updateStudent,
   deleteStudent,
@@ -44,7 +45,8 @@ import { toast } from "sonner";
 
 const StudentsPage = () => {
   const navigate = useNavigate();
-  const [students, setStudents] = useState<StudentRecord[]>([]);
+  // Instant synchronous initialization (0ms delay)
+  const [students, setStudents] = useState<StudentRecord[]>(() => getLocalStudents());
   const [search, setSearch] = useState("");
   const [deptFilter, setDeptFilter] = useState("all");
   const [yearFilter, setYearFilter] = useState("all");
@@ -53,18 +55,14 @@ const StudentsPage = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingStudent, setEditingStudent] = useState<StudentRecord | null>(null);
   const [form, setForm] = useState({ name: "", department: "", year: "1", email: "", enrollmentId: "" });
-  const [loading, setLoading] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
   const loadStudents = async () => {
     try {
-      setLoading(true);
       const data = await getStudents();
       setStudents(data);
     } catch (e) {
       console.error(e);
-    } finally {
-      setLoading(false);
     }
   };
 

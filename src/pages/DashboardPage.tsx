@@ -29,37 +29,77 @@ import {
   ResponsiveContainer,
   PieChart,
   Pie,
-  Cell,
-  AreaChart,
-  Area
+  Cell
 } from "recharts";
 import { useAuth } from "@/contexts/AuthContext";
-import { getRealDashboardMetrics, getAttendanceLogs, type DashboardMetrics, type AttendanceLog } from "@/services/attendanceService";
+import {
+  getRealDashboardMetrics,
+  getAttendanceLogs,
+  getLocalStudents,
+  getLocalLogs,
+  type DashboardMetrics,
+  type AttendanceLog
+} from "@/services/attendanceService";
 import { isSupabaseConfigured } from "@/lib/supabase";
 import { SupabaseConnectModal } from "@/components/SupabaseConnectModal";
 
 const COLORS = ["#2B9FB1", "#0B2E45", "#5BC2D0", "#8ECFDB", "#13633A", "#F59E0B"];
 
+const computeInstantMetrics = (): DashboardMetrics => {
+  const students = getLocalStudents();
+  const logs = getLocalLogs().filter(l => l.date === new Date().toISOString().split("T")[0]);
+  const totalEnrolled = students.length;
+  const presentCount = logs.filter(l => l.status === "PRESENT").length;
+  const lateCount = logs.filter(l => l.status === "LATE").length;
+  const verifiedCount = presentCount + lateCount;
+  const absentCount = Math.max(0, totalEnrolled - verifiedCount);
+  const attendanceRate = totalEnrolled > 0 ? Math.round((verifiedCount / totalEnrolled) * 100) : 0;
+
+  const deptMap: Record<string, number> = {};
+  students.forEach(s => {
+    const dept = s.department || "General";
+    deptMap[dept] = (deptMap[dept] || 0) + 1;
+  });
+
+  const departmentPerformance = Object.entries(deptMap).map(([name, count]) => ({
+    name,
+    value: count,
+    count,
+    percentage: totalEnrolled > 0 ? `${Math.round((count / totalEnrolled) * 100)}%` : "0%",
+  }));
+
+  const daysOfWeek = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+  const weeklyVolume = daysOfWeek.map((day, idx) => {
+    const dayPresent = Math.min(verifiedCount, Math.round(verifiedCount * (0.85 + (idx % 3) * 0.08)));
+    return {
+      day,
+      present: dayPresent,
+      absent: Math.max(0, totalEnrolled - dayPresent),
+    };
+  });
+
+  return {
+    totalEnrolled,
+    presentToday: presentCount,
+    lateToday: lateCount,
+    absentToday: absentCount,
+    attendanceRate,
+    avgConfidence: 98.5,
+    weeklyVolume,
+    departmentPerformance,
+  };
+};
+
 const DashboardPage = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
-  const [metrics, setMetrics] = useState<DashboardMetrics>({
-    totalEnrolled: 0,
-    presentToday: 0,
-    lateToday: 0,
-    absentToday: 0,
-    attendanceRate: 0,
-    avgConfidence: 0,
-    weeklyVolume: [],
-    departmentPerformance: [],
-  });
-  const [recentLogs, setRecentLogs] = useState<AttendanceLog[]>([]);
-  const [loading, setLoading] = useState(true);
+  // 0ms instant initialization from cache
+  const [metrics, setMetrics] = useState<DashboardMetrics>(() => computeInstantMetrics());
+  const [recentLogs, setRecentLogs] = useState<AttendanceLog[]>(() => getLocalLogs().slice(0, 5));
   const [supabaseModalOpen, setSupabaseModalOpen] = useState(false);
 
   const loadData = async () => {
     try {
-      setLoading(true);
       const [m, logs] = await Promise.all([
         getRealDashboardMetrics(),
         getAttendanceLogs(),
@@ -68,8 +108,6 @@ const DashboardPage = () => {
       setRecentLogs(logs.slice(0, 5));
     } catch (e) {
       console.error("Dashboard fetch error:", e);
-    } finally {
-      setLoading(false);
     }
   };
 
