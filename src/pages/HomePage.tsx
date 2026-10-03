@@ -568,7 +568,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ================= SOCIAL PROOF & STATS BANNER ================= */}
+        {/* ================= TECHNICAL & ARCHITECTURAL STATS BANNER ================= */}
         <section className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="rounded-3xl border border-[#cbe0e6] bg-white/95 p-6 sm:p-8 shadow-sm backdrop-blur-md">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center divide-y sm:divide-y-0 sm:divide-x divide-[#e2edf0]">
@@ -583,14 +583,14 @@ export default function HomePage() {
                 <p className="text-[11px] text-[#557688] mt-0.5">Instant parallel inference</p>
               </div>
               <div className="pt-4 sm:pt-0 sm:pl-6">
-                <p className="font-display text-3xl sm:text-4xl font-black text-[#0B2E45]">180K+</p>
-                <p className="text-xs font-bold text-[#2B9FB1] uppercase tracking-wider mt-1">Sessions Logged Monthly</p>
-                <p className="text-[11px] text-[#557688] mt-0.5">Across institutions & campuses</p>
+                <p className="font-display text-3xl sm:text-4xl font-black text-[#0B2E45]">5-Angle</p>
+                <p className="text-xs font-bold text-[#2B9FB1] uppercase tracking-wider mt-1">Biometric Registration</p>
+                <p className="text-[11px] text-[#557688] mt-0.5">Multi-pose anchors & calibration</p>
               </div>
               <div className="pt-4 sm:pt-0 sm:pl-6">
                 <p className="font-display text-3xl sm:text-4xl font-black text-[#0B2E45]">0%</p>
                 <p className="text-xs font-bold text-emerald-600 uppercase tracking-wider mt-1">Buddy Punching / Proxy</p>
-                <p className="text-[11px] text-[#557688] mt-0.5">Liveness anti-spoof protection</p>
+                <p className="text-[11px] text-[#557688] mt-0.5">3D liveness anti-spoof protection</p>
               </div>
             </div>
           </div>
