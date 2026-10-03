@@ -13,7 +13,7 @@ import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue,
 } from "@/components/ui/select";
 import { Badge } from "@/components/ui/badge";
-import { MOCK_DEPARTMENTS, type Student } from "@/data/mockData";
+import { MOCK_DEPARTMENTS } from "@/data/mockData";
 import {
   Plus,
   Search,
@@ -32,48 +32,35 @@ import {
   ArrowRight,
   Filter
 } from "lucide-react";
-import { fetchApi } from "@/lib/api";
+import {
+  getStudents,
+  createStudent,
+  updateStudent,
+  deleteStudent,
+  type StudentRecord
+} from "@/services/attendanceService";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
-type BackendStudent = {
-  id: string | number;
-  name: string;
-  department: string;
-  year: number;
-  studentId: string;
-  datasetPath?: string;
-};
-
 const StudentsPage = () => {
   const navigate = useNavigate();
-  const [students, setStudents] = useState<Student[]>([]);
+  const [students, setStudents] = useState<StudentRecord[]>([]);
   const [search, setSearch] = useState("");
   const [deptFilter, setDeptFilter] = useState("all");
   const [yearFilter, setYearFilter] = useState("all");
   const [faceDataFilter, setFaceDataFilter] = useState("all");
   const [viewMode, setViewMode] = useState<"grid" | "table">("grid");
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [editingStudent, setEditingStudent] = useState<Student | null>(null);
+  const [editingStudent, setEditingStudent] = useState<StudentRecord | null>(null);
   const [form, setForm] = useState({ name: "", department: "", year: "1", email: "", enrollmentId: "" });
   const [loading, setLoading] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   const loadStudents = async () => {
     try {
       setLoading(true);
-      const res = await fetchApi("/students");
-      if (res.success) {
-        const backendStudents = (res.data as BackendStudent[]).map((s) => ({
-          id: s.id.toString(),
-          name: s.name,
-          department: s.department,
-          year: s.year,
-          email: `${s.name.toLowerCase().replace(/\s+/g, ".")}@univ.edu`,
-          enrollmentId: s.studentId,
-          faceDatasetCount: s.datasetPath ? 25 : 0
-        }));
-        setStudents(backendStudents);
-      }
+      const data = await getStudents();
+      setStudents(data);
     } catch (e) {
       console.error(e);
     } finally {
@@ -87,12 +74,14 @@ const StudentsPage = () => {
 
   const filtered = useMemo(() => {
     return students.filter(s => {
-      const matchSearch = s.name.toLowerCase().includes(search.toLowerCase()) ||
-        s.enrollmentId.toLowerCase().includes(search.toLowerCase()) ||
-        s.email.toLowerCase().includes(search.toLowerCase());
+      const matchSearch =
+        s.name.toLowerCase().includes(search.toLowerCase()) ||
+        s.studentId.toLowerCase().includes(search.toLowerCase()) ||
+        (s.email && s.email.toLowerCase().includes(search.toLowerCase()));
       const matchDept = deptFilter === "all" || s.department === deptFilter;
       const matchYear = yearFilter === "all" || String(s.year) === yearFilter;
-      const matchFace = faceDataFilter === "all" ||
+      const matchFace =
+        faceDataFilter === "all" ||
         (faceDataFilter === "registered" && s.faceDatasetCount > 0) ||
         (faceDataFilter === "missing" && s.faceDatasetCount === 0);
       return matchSearch && matchDept && matchYear && matchFace;
@@ -107,13 +96,25 @@ const StudentsPage = () => {
 
   const openAdd = () => {
     setEditingStudent(null);
-    setForm({ name: "", department: MOCK_DEPARTMENTS[0]?.name || "Computer Science", year: "1", email: "", enrollmentId: `STU-${Math.floor(1000 + Math.random() * 9000)}` });
+    setForm({
+      name: "",
+      department: MOCK_DEPARTMENTS[0]?.name || "Computer Science",
+      year: "1",
+      email: "",
+      enrollmentId: `STU-${Math.floor(1000 + Math.random() * 9000)}`,
+    });
     setDialogOpen(true);
   };
 
-  const openEdit = (s: Student) => {
+  const openEdit = (s: StudentRecord) => {
     setEditingStudent(s);
-    setForm({ name: s.name, department: s.department, year: String(s.year), email: s.email, enrollmentId: s.enrollmentId });
+    setForm({
+      name: s.name,
+      department: s.department,
+      year: String(s.year),
+      email: s.email || "",
+      enrollmentId: s.studentId,
+    });
     setDialogOpen(true);
   };
 
@@ -123,26 +124,26 @@ const StudentsPage = () => {
       return;
     }
 
+    setSubmitting(true);
     try {
-      const payload = {
-        name: form.name,
-        department: form.department,
-        year: parseInt(form.year),
-        studentId: form.enrollmentId
-      };
-      
       if (editingStudent) {
-        await fetchApi(`/students/${editingStudent.id}`, {
-          method: "PUT",
-          body: JSON.stringify(payload)
+        await updateStudent(editingStudent.id, {
+          name: form.name,
+          studentId: form.enrollmentId,
+          department: form.department,
+          year: parseInt(form.year),
+          email: form.email,
         });
-        toast.success("Student profile updated successfully!");
+        toast.success("Student profile updated successfully in Supabase!");
       } else {
-        await fetchApi("/students", {
-          method: "POST",
-          body: JSON.stringify(payload)
+        await createStudent({
+          name: form.name,
+          studentId: form.enrollmentId,
+          department: form.department,
+          year: parseInt(form.year),
+          email: form.email,
         });
-        toast.success("Student added! Proceed to Face Registration to enroll biometric data.");
+        toast.success("Student enrolled in Supabase! Proceed to Face Studio to register biometrics.");
       }
       await loadStudents();
       setDialogOpen(false);
@@ -150,13 +151,15 @@ const StudentsPage = () => {
       console.error(e);
       const message = e instanceof Error ? e.message : "Failed to save student";
       toast.error(message);
+    } finally {
+      setSubmitting(false);
     }
   };
 
   const handleDelete = async (id: string, name: string) => {
     if (!confirm(`Are you sure you want to delete student "${name}"?`)) return;
     try {
-      await fetchApi(`/students/${id}`, { method: "DELETE" });
+      await deleteStudent(id);
       toast.success("Student removed successfully.");
       await loadStudents();
     } catch (e) {
@@ -369,7 +372,7 @@ const StudentsPage = () => {
                         <h4 className="font-bold text-[#0D2237] text-base leading-tight group-hover:text-[#2B9FB1] transition-colors">
                           {s.name}
                         </h4>
-                        <p className="font-mono text-xs text-muted-foreground mt-0.5">{s.enrollmentId}</p>
+                        <p className="font-mono text-xs text-muted-foreground mt-0.5">{s.studentId}</p>
                       </div>
                     </div>
                     {hasFace ? (
@@ -459,7 +462,7 @@ const StudentsPage = () => {
                 <TableBody>
                   {filtered.map(s => (
                     <TableRow key={s.id} className="hover:bg-slate-50/80 transition-colors">
-                      <TableCell className="font-mono text-xs font-semibold text-slate-600">{s.enrollmentId}</TableCell>
+                      <TableCell className="font-mono text-xs font-semibold text-slate-600">{s.studentId}</TableCell>
                       <TableCell>
                         <div className="flex items-center gap-3">
                           <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${getAvatarGradient(s.id)} flex items-center justify-center text-white font-bold text-xs shadow-sm`}>
@@ -629,8 +632,12 @@ const StudentsPage = () => {
             <Button variant="outline" onClick={() => setDialogOpen(false)} className="rounded-xl">
               Cancel
             </Button>
-            <Button onClick={handleSave} className="bg-[#2B9FB1] hover:bg-[#23899B] text-white rounded-xl">
-              {editingStudent ? "Save Changes" : "Create Student"}
+            <Button
+              onClick={handleSave}
+              className="bg-[#2B9FB1] hover:bg-[#23899B] text-white rounded-xl"
+              disabled={submitting}
+            >
+              {submitting ? "Saving..." : editingStudent ? "Save Changes" : "Create Student"}
             </Button>
           </DialogFooter>
         </DialogContent>

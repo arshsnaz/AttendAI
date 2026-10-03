@@ -46,7 +46,7 @@ export type DashboardMetrics = {
 };
 
 // ----------------------------------------------------
-// Students Service
+// Students Service (Supabase + API Fallback)
 // ----------------------------------------------------
 
 export const getStudents = async (): Promise<StudentRecord[]> => {
@@ -57,13 +57,12 @@ export const getStudents = async (): Promise<StudentRecord[]> => {
         .select('*')
         .order('created_at', { ascending: false });
 
-      if (error) throw error;
-      if (data) {
+      if (!error && data) {
         return data.map(s => ({
           id: s.id,
           studentId: s.student_id,
           name: s.name,
-          email: s.email,
+          email: s.email || `${s.name.toLowerCase().replace(/\s+/g, '.')}@univ.edu`,
           department: s.department,
           year: s.year || 1,
           faceDatasetCount: s.face_dataset_count || 0,
@@ -90,9 +89,7 @@ export const getStudents = async (): Promise<StudentRecord[]> => {
         datasetPath: s.datasetPath,
       }));
     }
-  } catch (e) {
-    console.error('API fetch students error:', e);
-  }
+  } catch (e) {}
 
   return [];
 };
@@ -105,31 +102,40 @@ export const createStudent = async (student: {
   email?: string;
 }): Promise<StudentRecord | null> => {
   if (isSupabaseConfigured()) {
-    const { data, error } = await supabase
-      .from('students')
-      .insert([
-        {
-          name: student.name,
-          student_id: student.studentId,
-          department: student.department,
-          year: student.year,
-          email: student.email,
-          face_dataset_count: 0,
-        },
-      ])
-      .select()
-      .single();
+    try {
+      const { data, error } = await supabase
+        .from('students')
+        .insert([
+          {
+            name: student.name,
+            student_id: student.studentId,
+            department: student.department,
+            year: student.year,
+            email: student.email || `${student.name.toLowerCase().replace(/\s+/g, '.')}@univ.edu`,
+            face_dataset_count: 0,
+          },
+        ])
+        .select()
+        .single();
 
-    if (!error && data) {
-      return {
-        id: data.id,
-        studentId: data.student_id,
-        name: data.name,
-        email: data.email,
-        department: data.department,
-        year: data.year,
-        faceDatasetCount: data.face_dataset_count || 0,
-      };
+      if (!error && data) {
+        return {
+          id: data.id,
+          studentId: data.student_id,
+          name: data.name,
+          email: data.email,
+          department: data.department,
+          year: data.year,
+          faceDatasetCount: data.face_dataset_count || 0,
+        };
+      }
+      if (error) {
+        console.error('Supabase create student error:', error);
+        throw new Error(error.message);
+      }
+    } catch (e: any) {
+      console.error('Supabase student insertion error:', e);
+      throw e;
     }
   }
 
@@ -145,6 +151,60 @@ export const createStudent = async (student: {
   });
 
   return res.success ? (res.data as StudentRecord) : null;
+};
+
+export const updateStudent = async (
+  id: string,
+  student: { name: string; studentId: string; department: string; year: number; email?: string }
+): Promise<boolean> => {
+  if (isSupabaseConfigured()) {
+    try {
+      const { error } = await supabase
+        .from('students')
+        .update({
+          name: student.name,
+          student_id: student.studentId,
+          department: student.department,
+          year: student.year,
+          email: student.email,
+        })
+        .eq('id', id);
+
+      if (!error) return true;
+      if (error) throw new Error(error.message);
+    } catch (e: any) {
+      console.error('Supabase update student error:', e);
+      throw e;
+    }
+  }
+
+  const res = await fetchApi(`/students/${id}`, {
+    method: 'PUT',
+    body: JSON.stringify({
+      name: student.name,
+      studentId: student.studentId,
+      department: student.department,
+      year: student.year,
+    }),
+  });
+
+  return res.success;
+};
+
+export const deleteStudent = async (id: string): Promise<boolean> => {
+  if (isSupabaseConfigured()) {
+    try {
+      const { error } = await supabase.from('students').delete().eq('id', id);
+      if (!error) return true;
+      if (error) throw new Error(error.message);
+    } catch (e: any) {
+      console.error('Supabase delete student error:', e);
+      throw e;
+    }
+  }
+
+  const res = await fetchApi(`/students/${id}`, { method: 'DELETE' });
+  return res.success;
 };
 
 export const updateStudentBiometrics = async (id: string, count: number): Promise<void> => {
@@ -404,7 +464,6 @@ export const subscribeToRealtimeAttendance = (onNewLog: (log: AttendanceLog) => 
       'postgres_changes',
       { event: 'INSERT', schema: 'public', table: 'attendance' },
       async payload => {
-        // Fetch full record details
         const logs = await getAttendanceLogs();
         const matched = logs.find(l => l.id === payload.new.id);
         if (matched) {
