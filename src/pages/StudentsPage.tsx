@@ -190,22 +190,22 @@ const StudentsPage = () => {
   return (
     <div className="space-y-8 animate-rise">
       {/* Header Banner */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 rounded-2xl bg-gradient-to-r from-[#0B2E45] to-[#124968] text-white shadow-lg relative overflow-hidden">
-        <div className="absolute -right-10 -bottom-10 w-48 h-48 bg-[#2B9FB1]/20 rounded-full blur-3xl pointer-events-none" />
-        <div className="relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-cyan-300 text-xs font-semibold mb-2 backdrop-blur-sm border border-white/10">
-            <GraduationCap className="w-3.5 h-3.5" />
-            <span>Academic Registry</span>
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 rounded-2xl bg-white/90 border border-[#d2e1e5] shadow-sm">
+        <div>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-50 text-[#2B9FB1] text-xs font-semibold mb-2 border border-cyan-200">
+            <GraduationCap className="w-3.5 h-3.5" /> Academic Registry
           </div>
-          <h1 className="text-2xl sm:text-3xl font-bold font-display tracking-tight">Student Directory</h1>
-          <p className="text-cyan-100/80 text-sm mt-1 max-w-xl">
+          <h1 className="text-2xl sm:text-3xl font-bold font-display text-[#0D2237]">
+            Student Directory
+          </h1>
+          <p className="text-xs text-muted-foreground mt-0.5">
             Manage student enrollment profiles, assign departments, and track AI facial recognition biometric registration.
           </p>
         </div>
-        <div className="relative z-10 flex items-center gap-3">
+        <div className="flex items-center gap-2.5">
           <Button
             onClick={openAdd}
-            className="bg-[#2B9FB1] hover:bg-[#23899B] text-white shadow-[0_4px_16px_rgba(43,159,177,0.4)] rounded-xl gap-2 font-medium"
+            className="bg-[#2B9FB1] hover:bg-[#23899B] text-white rounded-xl text-xs h-10 px-4 gap-1.5 shadow-md font-medium"
           >
             <Plus className="w-4 h-4" /> Add Student
           </Button>

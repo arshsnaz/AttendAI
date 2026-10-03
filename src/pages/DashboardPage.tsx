@@ -122,49 +122,46 @@ const DashboardPage = () => {
   return (
     <div className="space-y-8 animate-rise">
       {/* Welcome Hero Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-[#0B2E45] via-[#103D58] to-[#1F6E82] p-6 md:p-8 text-white shadow-xl">
-        <div className="absolute -right-12 -bottom-12 w-64 h-64 rounded-full bg-[#2B9FB1]/20 blur-3xl pointer-events-none" />
-        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="space-y-2">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-cyan-300 text-xs font-semibold backdrop-blur-sm border border-white/10">
-                <Sparkles className="w-3.5 h-3.5 text-cyan-400" /> AI Attendance Intelligence
-              </span>
-              <button
-                onClick={() => setSupabaseModalOpen(true)}
-                className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-sm transition-all border ${
-                  isSupabaseConfigured()
-                    ? "bg-emerald-500/20 text-emerald-300 border-emerald-400/40 hover:bg-emerald-500/30"
-                    : "bg-amber-500/20 text-amber-300 border-amber-400/40 hover:bg-amber-500/30"
-                }`}
-              >
-                <Database className="w-3.5 h-3.5" />
-                <span>{isSupabaseConfigured() ? "Supabase Connected" : "Connect Supabase DB"}</span>
-              </button>
-            </div>
-            <h1 className="text-3xl sm:text-4xl font-extrabold font-display tracking-tight">
-              Welcome back, {user?.name || "Administrator"} 👋
-            </h1>
-            <p className="text-cyan-100/80 text-sm max-w-xl">
-              Live biometric insights and real-time database analytics for today's active sessions.
-            </p>
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 p-6 rounded-2xl bg-white/90 border border-[#d2e1e5] shadow-sm">
+        <div>
+          <div className="flex flex-wrap items-center gap-2 mb-2">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-50 text-[#2B9FB1] text-xs font-semibold border border-cyan-200">
+              <Sparkles className="w-3.5 h-3.5" /> AI Attendance Intelligence
+            </span>
+            <button
+              onClick={() => setSupabaseModalOpen(true)}
+              className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold transition-all border ${
+                isSupabaseConfigured()
+                  ? "bg-emerald-50 text-emerald-700 border-emerald-200 hover:bg-emerald-100"
+                  : "bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100"
+              }`}
+            >
+              <Database className="w-3.5 h-3.5" />
+              <span>{isSupabaseConfigured() ? "Supabase Connected" : "Connect Supabase DB"}</span>
+            </button>
           </div>
+          <h1 className="text-2xl sm:text-3xl font-bold font-display text-[#0D2237]">
+            Welcome back, {user?.name || "Administrator"} 👋
+          </h1>
+          <p className="text-xs text-muted-foreground mt-0.5">
+            Live biometric insights and real-time database analytics for today's active sessions.
+          </p>
+        </div>
 
-          <div className="flex flex-wrap items-center gap-3">
-            <Button
-              onClick={() => navigate("/attendance")}
-              className="bg-[#2B9FB1] hover:bg-[#23899B] text-white shadow-[0_4px_20px_rgba(43,159,177,0.4)] rounded-xl px-5 h-11 font-semibold gap-2"
-            >
-              <Camera className="w-4 h-4" /> Start Live Scan
-            </Button>
-            <Button
-              onClick={() => navigate("/students")}
-              variant="outline"
-              className="border-white/30 bg-white/10 text-white hover:bg-white/20 rounded-xl px-4 h-11 text-xs font-medium"
-            >
-              <Plus className="w-4 h-4 mr-1.5" /> Add Student
-            </Button>
-          </div>
+        <div className="flex flex-wrap items-center gap-2.5">
+          <Button
+            onClick={() => navigate("/attendance")}
+            className="bg-[#2B9FB1] hover:bg-[#23899B] text-white rounded-xl text-xs h-10 px-4 gap-1.5 shadow-md font-medium"
+          >
+            <Camera className="w-4 h-4" /> Start Live Scan
+          </Button>
+          <Button
+            onClick={() => navigate("/students")}
+            variant="outline"
+            className="rounded-xl border-[#d2e1e5] text-xs h-10 px-4 gap-1.5 hover:bg-slate-50 text-slate-700"
+          >
+            <Plus className="w-4 h-4" /> Add Student
+          </Button>
         </div>
       </div>
 
