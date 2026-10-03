@@ -273,19 +273,19 @@ const RecordsPage = () => {
             {/* Filters Row */}
             <div className="flex flex-wrap items-center gap-2.5 w-full lg:w-auto">
               {/* Date Filter */}
-              <div className="flex items-center gap-1.5 bg-slate-50 border border-[#d2e1e5] rounded-xl px-2.5 h-10">
-                <Calendar className="w-4 h-4 text-[#2B9FB1]" />
+              <div className="flex items-center gap-1.5 bg-slate-50 border border-[#d2e1e5] rounded-xl px-2.5 h-10 flex-1 sm:flex-initial">
+                <Calendar className="w-4 h-4 text-[#2B9FB1] flex-shrink-0" />
                 <input
                   type="date"
                   value={dateFilter}
                   onChange={e => setDateFilter(e.target.value)}
-                  className="bg-transparent text-xs font-medium text-slate-700 outline-none"
+                  className="bg-transparent text-xs font-medium text-slate-700 outline-none w-full"
                 />
               </div>
 
               {/* Subject Filter */}
               <Select value={subjectFilter} onValueChange={setSubjectFilter}>
-                <SelectTrigger className="h-10 text-xs w-[160px] bg-slate-50 border-[#d2e1e5] rounded-xl">
+                <SelectTrigger className="h-10 text-xs flex-1 sm:flex-initial sm:w-[160px] bg-slate-50 border-[#d2e1e5] rounded-xl">
                   <SelectValue placeholder="All Subjects" />
                 </SelectTrigger>
                 <SelectContent>
@@ -298,7 +298,7 @@ const RecordsPage = () => {
 
               {/* Status Filter */}
               <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger className="h-10 text-xs w-[130px] bg-slate-50 border-[#d2e1e5] rounded-xl">
+                <SelectTrigger className="h-10 text-xs flex-1 sm:flex-initial sm:w-[130px] bg-slate-50 border-[#d2e1e5] rounded-xl">
                   <SelectValue placeholder="All Statuses" />
                 </SelectTrigger>
                 <SelectContent>

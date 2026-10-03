@@ -292,7 +292,7 @@ const StudentsPage = () => {
 
               {/* Department */}
               <Select value={deptFilter} onValueChange={setDeptFilter}>
-                <SelectTrigger className="h-10 text-xs w-[160px] bg-slate-50 border-[#d2e1e5] rounded-xl">
+                <SelectTrigger className="h-10 text-xs flex-1 sm:flex-initial sm:w-[160px] bg-slate-50 border-[#d2e1e5] rounded-xl">
                   <SelectValue placeholder="Department" />
                 </SelectTrigger>
                 <SelectContent>
@@ -305,7 +305,7 @@ const StudentsPage = () => {
 
               {/* Year */}
               <Select value={yearFilter} onValueChange={setYearFilter}>
-                <SelectTrigger className="h-10 text-xs w-[110px] bg-slate-50 border-[#d2e1e5] rounded-xl">
+                <SelectTrigger className="h-10 text-xs flex-1 sm:flex-initial sm:w-[110px] bg-slate-50 border-[#d2e1e5] rounded-xl">
                   <SelectValue placeholder="Year" />
                 </SelectTrigger>
                 <SelectContent>
@@ -318,7 +318,7 @@ const StudentsPage = () => {
 
               {/* Biometrics Status */}
               <Select value={faceDataFilter} onValueChange={setFaceDataFilter}>
-                <SelectTrigger className="h-10 text-xs w-[140px] bg-slate-50 border-[#d2e1e5] rounded-xl">
+                <SelectTrigger className="h-10 text-xs flex-1 sm:flex-initial sm:w-[140px] bg-slate-50 border-[#d2e1e5] rounded-xl">
                   <SelectValue placeholder="Face Status" />
                 </SelectTrigger>
                 <SelectContent>
@@ -544,7 +544,7 @@ const StudentsPage = () => {
 
       {/* Add / Edit Student Dialog */}
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent className="max-w-lg rounded-2xl border-[#d2e1e5] p-6">
+        <DialogContent className="max-w-lg w-[95vw] sm:w-full rounded-2xl border-[#d2e1e5] p-5 sm:p-6 max-h-[90vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="text-xl font-bold font-display text-[#0D2237] flex items-center gap-2">
               <GraduationCap className="w-5 h-5 text-[#2B9FB1]" />

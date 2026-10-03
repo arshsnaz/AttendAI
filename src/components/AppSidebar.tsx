@@ -42,7 +42,7 @@ const facultyItems = [
 
 export function AppSidebar() {
   const { user } = useAuth();
-  const { state } = useSidebar();
+  const { state, isMobile, setOpenMobile } = useSidebar();
   const collapsed = state === "collapsed";
   const location = useLocation();
   const isAdmin = user?.role?.toUpperCase() === "ADMIN" || !user?.role;
@@ -53,6 +53,7 @@ export function AppSidebar() {
       <SidebarHeader className="p-3">
         <NavLink
           to="/"
+          onClick={() => isMobile && setOpenMobile(false)}
           className={`w-full rounded-2xl border border-[#d2e1e5] bg-gradient-to-br from-white via-[#fcfefe] to-[#f0f7f9] shadow-sm hover:border-[#2B9FB1]/50 hover:shadow-md hover:shadow-[#2B9FB1]/10 transition-all duration-300 group ${
             collapsed ? "flex justify-center p-2" : "flex items-center gap-3 p-2.5"
           }`}
@@ -91,6 +92,7 @@ export function AppSidebar() {
                     <NavLink
                       to={item.url}
                       end={item.url === "/dashboard"}
+                      onClick={() => isMobile && setOpenMobile(false)}
                       className="flex items-center rounded-xl px-3 py-2.5 text-[#325264] hover:bg-white/80 hover:text-[#0B2E45] transition-all duration-200"
                       activeClassName="bg-gradient-to-r from-[#2B9FB1] to-[#1E7D8C] text-white font-semibold shadow-md shadow-[#2B9FB1]/20 hover:text-white"
                     >
