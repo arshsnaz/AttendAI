@@ -494,21 +494,27 @@ export default function HomePage() {
                   <p className="text-[11px] font-bold text-[#4e7183] uppercase tracking-wider mb-2">
                     Live Stream Verification Queue (Click to inspect):
                   </p>
-                  <div className="grid grid-cols-4 gap-2">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                     {mockDetections.map((det, idx) => (
                       <button
                         key={det.id}
+                        type="button"
                         onClick={() => setActiveDetectionIndex(idx)}
                         className={`flex items-center gap-2 p-2 rounded-xl border text-left transition-all ${
                           activeDetectionIndex === idx
-                            ? 'bg-[#2B9FB1]/15 border-[#2B9FB1] shadow-xs'
+                            ? 'bg-[#2B9FB1]/15 border-[#2B9FB1] ring-1 ring-[#2B9FB1]/30 shadow-xs'
                             : 'bg-white/80 border-[#d2e1e5] hover:bg-[#f2f8fa]'
                         }`}
                       >
-                        <img src={det.avatar} alt={det.name} className="h-7 w-7 rounded-full object-cover flex-shrink-0" />
-                        <div className="min-w-0 hidden sm:block">
+                        <div className="relative flex-shrink-0">
+                          <img src={det.avatar} alt={det.name} className="h-7 w-7 sm:h-8 sm:w-8 rounded-full object-cover ring-1 ring-[#d2e1e5]" />
+                          {activeDetectionIndex === idx && (
+                            <span className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-emerald-500 rounded-full ring-1 ring-white" />
+                          )}
+                        </div>
+                        <div className="min-w-0 flex-1">
                           <p className="text-[11px] font-bold text-[#0B2E45] truncate leading-tight">{det.name.split(' ')[0]}</p>
-                          <p className="text-[9.5px] text-emerald-600 font-bold">{det.confidence}</p>
+                          <p className="text-[9.5px] text-emerald-600 font-bold leading-tight">{det.confidence}</p>
                         </div>
                       </button>
                     ))}
