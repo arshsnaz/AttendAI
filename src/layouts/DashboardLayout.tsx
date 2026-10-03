@@ -14,7 +14,8 @@ import {
   User,
   Shield,
   Activity,
-  Scan
+  Scan,
+  Database
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -32,6 +33,8 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Badge } from "@/components/ui/badge";
+import { isSupabaseConfigured } from "@/lib/supabase";
+import { SupabaseConnectModal } from "@/components/SupabaseConnectModal";
 
 const NOTIFICATIONS = [
   {
@@ -67,6 +70,7 @@ const DashboardLayout = () => {
   const { user, isAuthenticated, logout } = useAuth();
   const location = useLocation();
   const [notifications, setNotifications] = useState(NOTIFICATIONS);
+  const [supabaseModalOpen, setSupabaseModalOpen] = useState(false);
 
   if (!isAuthenticated) return <Navigate to="/login" replace />;
 
@@ -81,7 +85,6 @@ const DashboardLayout = () => {
     return name.split(" ").map(n => n[0]).slice(0, 2).join("").toUpperCase();
   };
 
-  // Get current page friendly title
   const getPageTitle = (pathname: string) => {
     if (pathname.includes("/attendance")) return "Live Attendance HUD";
     if (pathname.includes("/students")) return "Student Directory";
@@ -108,10 +111,25 @@ const DashboardLayout = () => {
             </div>
 
             <div className="flex items-center gap-3">
-              {/* Live Backend Connection Indicator */}
-              <div className="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-medium">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Backend Live</span>
+              {/* Supabase Database Connection Button */}
+              <button
+                onClick={() => setSupabaseModalOpen(true)}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold transition-all border shadow-sm ${
+                  isSupabaseConfigured()
+                    ? "bg-emerald-50 text-emerald-700 border-emerald-300 hover:bg-emerald-100"
+                    : "bg-amber-50 text-amber-800 border-amber-300 hover:bg-amber-100"
+                }`}
+              >
+                <Database className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">
+                  {isSupabaseConfigured() ? "Supabase Live" : "Connect Supabase"}
+                </span>
+              </button>
+
+              {/* Live Backend Indicator */}
+              <div className="hidden md:flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-cyan-50 border border-cyan-200 text-cyan-800 text-xs font-medium">
+                <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
+                <span>API Ready</span>
               </div>
 
               {/* Notifications Popover */}
@@ -198,6 +216,9 @@ const DashboardLayout = () => {
                       <Scan className="w-4 h-4 text-[#2B9FB1]" /> Live Camera Scanner
                     </Link>
                   </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => setSupabaseModalOpen(true)} className="flex items-center gap-2 p-2 rounded-xl text-xs font-medium cursor-pointer">
+                    <Database className="w-4 h-4 text-emerald-600" /> Supabase Database
+                  </DropdownMenuItem>
                   <DropdownMenuSeparator className="bg-slate-100" />
                   <DropdownMenuItem
                     onClick={logout}
@@ -216,6 +237,7 @@ const DashboardLayout = () => {
           </main>
         </div>
       </div>
+      <SupabaseConnectModal open={supabaseModalOpen} onOpenChange={setSupabaseModalOpen} />
     </SidebarProvider>
   );
 };
