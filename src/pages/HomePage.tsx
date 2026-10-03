@@ -267,17 +267,17 @@ export default function HomePage() {
                 <AttendAiLogo className="h-full w-full object-contain" />
               </div>
             </div>
-            <span className="bg-gradient-to-r from-[#0B2E45] via-[#104868] to-[#2B9FB1] bg-clip-text font-display text-2xl font-black tracking-tight text-transparent">
+            <span className="bg-gradient-to-r from-[#0B2E45] via-[#104868] to-[#2B9FB1] bg-clip-text font-display text-[1.45rem] font-black tracking-tight text-transparent">
               AttendAi
             </span>
           </Link>
 
           {/* Desktop Nav Items */}
-          <nav className="hidden items-center gap-1 rounded-full border border-[#d2e1e5] bg-white/70 px-4 py-1.5 shadow-xs backdrop-blur-md md:flex">
+          <nav className="hidden items-center gap-1 rounded-full border border-[#cbdfe5] bg-white/80 p-1 shadow-xs backdrop-blur-md md:flex">
             {navItems.map((item) => (
               <button
                 key={item.id}
-                className="rounded-full px-3.5 py-1.5 text-xs font-bold text-[#234557] transition-all hover:bg-[#2B9FB1]/10 hover:text-[#2B9FB1]"
+                className="rounded-full px-4 py-1.5 text-xs font-bold text-[#2a4d5e] transition-all duration-200 hover:bg-white hover:text-[#0B2E45] hover:shadow-xs"
                 onClick={() => scrollTo(item.id)}
               >
                 {item.label}
@@ -286,17 +286,17 @@ export default function HomePage() {
           </nav>
 
           {/* Action Buttons */}
-          <div className="hidden items-center gap-3 md:flex">
+          <div className="hidden items-center gap-2.5 md:flex">
             <Link to="/login">
               <Button
                 variant="ghost"
-                className="rounded-full text-xs font-bold text-[#1a3f52] hover:bg-white hover:text-[#0B2E45]"
+                className="h-10 rounded-full px-4 text-xs font-bold text-[#1f495e] hover:bg-white hover:text-[#0B2E45] transition-all"
               >
                 Sign In
               </Button>
             </Link>
             <Link to="/signup">
-              <Button className="group rounded-full bg-gradient-to-r from-[#2B9FB1] to-[#1E7D8C] px-5 text-xs font-bold text-white shadow-md shadow-[#2B9FB1]/20 transition-all hover:shadow-lg hover:shadow-[#2B9FB1]/30">
+              <Button className="group h-10 rounded-full bg-gradient-to-r from-[#2B9FB1] to-[#1E7D8C] px-5 text-xs font-bold text-white shadow-md shadow-[#2B9FB1]/20 transition-all duration-200 hover:shadow-lg hover:shadow-[#2B9FB1]/30 hover:scale-105">
                 Launch Workspace
                 <ArrowRight className="ml-1.5 h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
               </Button>
@@ -377,10 +377,6 @@ export default function HomePage() {
                     <ArrowRight className="ml-2.5 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </Link>
-                <div className="flex items-center gap-2 text-xs font-semibold text-[#406173]">
-                  <span className="h-2 w-2 rounded-full bg-emerald-500"></span>
-                  <span>Instant 3-minute setup • No credit card required</span>
-                </div>
               </div>
 
               {/* Trust Features Checklist */}
